@@ -1,6 +1,6 @@
 "use strict";
 
-// Selecting HTML elements
+//// Selecting HTML elements
 
 // Buttons
 const generateWordBtn = document.querySelector(".generateBtn");
@@ -39,8 +39,18 @@ consonants.forEach((el, i) => {
   const html = `<button class="keyButton btns" id="${i}">${el.toUpperCase()}</button>`;
 
   keyBoardContainer.insertAdjacentHTML("beforeend", html);
+
+  const playWithButtons = function (index) {
+    let buttons = keyBoardContainer.querySelectorAll(".keyButton");
+    buttons[index].addEventListener("click", function () {
+      console.log(index);
+    });
+  };
+
+  playWithButtons(i);
 });
 
+// 2. Display random word using the game info
 const gameInfo = {
   words: [
     "Developer",
@@ -63,5 +73,15 @@ const gameInfo = {
     "Angular",
   ],
   attempts: 8,
-  currentWord: "",
+  currentWord: [],
 };
+
+// Get a random word from obj.words and spread the word into an array
+const getRandomWord = function (obj) {
+  return (obj.currentWord = [
+    ...obj.words[Math.trunc(Math.random() * obj.words.length)],
+  ]);
+};
+
+console.log(getRandomWord(gameInfo));
+console.log(gameInfo.currentWord[0]);
