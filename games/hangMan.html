@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>It's play time!</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+
+      .wholeBody {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        flex: 1 0 auto;
+      }
+
+      .titleContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 4rem;
+        font-family: serif;
+      }
+
+      h2 {
+        font-family: serif;
+      }
+
+      /* CONTAINER OF GENERATE WORD, CURRENT WORD AND ATTEMPTS AND ITS CHILDREN */
+      .interactiveContainer {
+        padding: 5rem 0;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 200px;
+        row-gap: 75px;
+        justify-items: center;
+        align-items: center;
+      }
+
+      .generateBtn {
+        padding: 5px;
+        font-size: 1.3rem;
+      }
+
+      .currentWord {
+        font-size: 2rem;
+        letter-spacing: 12px;
+      }
+
+      .currentWord:last-child {
+        letter-spacing: 0px;
+      }
+
+      .attemptsDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.5rem;
+      }
+
+      .numbOfAtt {
+        font-size: 1.6rem;
+        border: solid #228be6 2px;
+        padding: 9px;
+      }
+
+      .currentScore,
+      .totalWords,
+      .guessed {
+        font-size: 1.6rem;
+      }
+
+      .btns {
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 7px;
+        border: 2px solid #228be6;
+        background-image: linear-gradient(to left, #ffffff, #a5d8ff);
+        transition: background-image 5s;
+      }
+
+      .btns:hover {
+        background-image: linear-gradient(to right, #ffffff, #a5d8ff);
+        /* transition: background 5s; */
+      }
+
+      /* KEYBOARD CONTAINER AND ITS CHILDREN */
+      .keyBoard-container {
+        display: grid;
+        grid-template-columns: repeat(6, 5rem);
+        column-gap: 10px;
+        row-gap: 30px;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+      }
+
+      .individualKey {
+        display: inline-block;
+        height: 4rem;
+        width: 4rem;
+      }
+
+      .keyButton {
+        font-size: 1.5rem;
+        height: 3.8rem;
+        width: 3.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wholeBody">
+      <div class="titleContainer">
+        <h1>THE HANGMAN GAME</h1>
+        <h2>(WEB DEVELOPMENT EDITION)</h2>
+      </div>
+
+      <div class="interactiveContainer">
+        <div class="attemptsDiv">
+          <span class="numbOfAtt">8</span>
+          <p>attempts</p>
+        </div>
+        <div>
+          <p class="currentScore">
+            Guessed words: <span class="guessed">0</span> /
+            <span class="totalWords">20</span>
+          </p>
+        </div>
+        <div>
+          <button class="generateBtn btns">Generate new word</button>
+        </div>
+        <div class="randomWordContainer">
+          <span class="currentWord">W</span><span class="currentWord">O</span
+          ><span class="currentWord">R</span><span class="currentWord">D</span>
+        </div>
+      </div>
+
+      <div class="keyBoard-container">
+        <button class="keyButton btns">A</button>
+      </div>
+    </div>
+
+    <!-- <script src="hangManScript.js"></script> -->
+    <script src="hManScript2.js"></script>
+  </body>
+</html>
