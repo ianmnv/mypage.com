@@ -43,12 +43,13 @@ consonants.forEach((el, i) => {
   //// 3. Create event listener function for each button and compares the secret word
   const playWithButtons = function (index) {
     let buttons = keyBoardContainer.querySelectorAll(".keyButton");
+
     buttons[index].addEventListener("click", function () {
       console.log(typeof consonants[index], consonants[index], index);
 
-      const playersArray = gameInfo.playersArray;
+      const currentWord = gameInfo.currentWord;
 
-      const replaceConsonants = playersArray.map((el, i) => {
+      const replaceConsonants = gameInfo.playersArray.map((el, i) => {
         if (consonants[index].toUpperCase() === currentWord[i].toUpperCase()) {
           el = el.replace("_", consonants[index].toUpperCase());
         }
@@ -101,28 +102,39 @@ const getRandomWord = function (obj) {
     ...obj.words[Math.trunc(Math.random() * obj.words.length)],
   ]);
 };
-getRandomWord(gameInfo);
 
-const currentWord = gameInfo.currentWord;
 // Replace consonants with underscores
 const replaceWithUnderscore = function (arr) {
   return arr.map((el) => {
     for (let i = 0; i < consonants.length; i++) {
-      if (el.toUpperCase().includes(consonants[i].toUpperCase())) {
+      if (consonants[i].toUpperCase().includes(el.toUpperCase())) {
         el = el.replace(new RegExp(consonants[i], "gi"), "_");
       }
     }
     return el;
   });
 };
-gameInfo.playersArray = replaceWithUnderscore(currentWord);
 
-// Cleaning container first
-randomWordContainer.innerHTML = "";
-// Exporting the current word to the HTML
-gameInfo.playersArray.forEach((el, i) => {
-  // "el" is a string type
-  const secretWordHTML = `<span class="currentWord secretWord--${i}">${el.toUpperCase()}</span>`;
+const updateUI = function () {
+  getRandomWord(gameInfo);
 
-  randomWordContainer.insertAdjacentHTML("beforeend", secretWordHTML);
-});
+  gameInfo.playersArray = replaceWithUnderscore(gameInfo.currentWord);
+
+  // Cleaning container first
+  randomWordContainer.innerHTML = "";
+
+  // Exporting the current word to the HTML
+  gameInfo.playersArray.forEach((el, i) => {
+    // "el" is a string type
+    const secretWordHTML = `<span class="currentWord secretWord--${i}">${el.toUpperCase()}</span>`;
+    randomWordContainer.insertAdjacentHTML("beforeend", secretWordHTML);
+  });
+
+  console.log(gameInfo.currentWord, "current word");
+  console.log(gameInfo.playersArray, "player's array");
+};
+
+updateUI();
+
+/* GENERATE NEW WORD BUTTON */
+generateWordBtn.addEventListener("click", updateUI);
