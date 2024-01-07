@@ -13,79 +13,85 @@
         font-family: sans-serif;
       }
 
-      .wholeBody {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
-        flex: 1 0 auto;
+      html {
+        font-size: 62.5%;
       }
 
       .titleContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
+        text-align: center;
+        margin: 2rem 0;
       }
 
       h1 {
-        font-size: 4rem;
+        font-size: 6rem;
         font-family: serif;
       }
 
       h2 {
+        font-size: 2.5rem;
         font-family: serif;
+        padding: 0.8rem;
+        background-image: radial-gradient(circle, #a5d8ff, #15aabf, #7048e8);
+      }
+
+      .mainBlock {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
       }
 
       /* CONTAINER OF GENERATE WORD, CURRENT WORD AND ATTEMPTS AND ITS CHILDREN */
       .interactiveContainer {
-        padding: 5rem 0;
+        width: 90vw;
+        padding: 9rem 40rem;
+
         display: grid;
         grid-template-columns: 1fr 2fr;
-        column-gap: 200px;
-        row-gap: 75px;
+        column-gap: 20rem;
+        row-gap: 5rem;
         justify-items: center;
         align-items: center;
+
+        background-color: #dbe4ff7e;
       }
 
       .generateBtn {
-        padding: 5px;
-        font-size: 1.3rem;
+        padding: 0.8rem 1.2rem;
+        font-size: 2.2rem;
       }
 
       .currentWord {
-        font-size: 2rem;
-        letter-spacing: 12px;
+        font-size: 3.5rem;
+        letter-spacing: 1.2rem;
       }
 
       .currentWord:last-child {
-        letter-spacing: 0px;
+        letter-spacing: 0;
       }
 
       .attemptsDiv {
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
       }
 
       .numbOfAtt {
-        font-size: 1.6rem;
-        border: solid #228be6 2px;
-        padding: 9px;
+        font-size: 2.6rem;
+        border: solid #228be6 0.2rem;
+        padding: 1rem;
       }
 
-      .currentScore,
-      .totalWords,
-      .guessed {
-        font-size: 1.6rem;
+      .currentScore {
+        font-size: 2.6rem;
       }
 
       .btns {
         display: inline-block;
         cursor: pointer;
-        border-radius: 7px;
-        border: 2px solid #228be6;
+        border-radius: 0.7rem;
+        border: 0.2rem solid #228be6;
         background-image: linear-gradient(to left, #ffffff, #a5d8ff);
         transition: background-image 5s;
       }
@@ -99,34 +105,31 @@
       .keyBoard-container {
         display: grid;
         grid-template-columns: repeat(6, 5rem);
-        column-gap: 10px;
-        row-gap: 30px;
+        column-gap: 6.5rem;
+        row-gap: 3.5rem;
         justify-items: center;
         align-items: center;
         justify-content: center;
         align-content: center;
       }
 
-      .individualKey {
-        display: inline-block;
-        height: 4rem;
-        width: 4rem;
-      }
-
       .keyButton {
-        font-size: 1.5rem;
-        height: 3.8rem;
-        width: 3.8rem;
+        font-size: 2.5rem;
+        height: 6.5rem;
+        width: 6.5rem;
       }
     </style>
   </head>
   <body>
-    <div class="wholeBody">
+    <header>
       <div class="titleContainer">
         <h1>THE HANGMAN GAME</h1>
         <h2>(WEB DEVELOPMENT EDITION)</h2>
       </div>
+    </header>
 
+    <section class="mainBlock">
+      <!-- <div class="interactiveBlock"> -->
       <div class="interactiveContainer">
         <div class="attemptsDiv">
           <span class="numbOfAtt">8</span>
@@ -139,20 +142,20 @@
           </p>
         </div>
         <div>
-          <button class="generateBtn btns">Generate new word</button>
+          <button class="generateBtn btns">Get new word</button>
         </div>
         <div class="randomWordContainer">
           <span class="currentWord">W</span><span class="currentWord">O</span
           ><span class="currentWord">R</span><span class="currentWord">D</span>
+          <!-- </div> -->
         </div>
       </div>
 
       <div class="keyBoard-container">
         <button class="keyButton btns">A</button>
       </div>
-    </div>
+    </section>
 
-    <!-- <script src="hangManScript.js"></script> -->
     <script src="hangManS.js"></script>
   </body>
 </html>
