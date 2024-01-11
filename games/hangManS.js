@@ -10,7 +10,6 @@ const generateWordBtn = document.querySelector(".generateBtn");
 const randomWordContainer = document.querySelector(".randomWordContainer");
 const keyBoardContainer = document.querySelector(".keyBoard-container");
 
-//// 1. Display consonants as buttons
 const consonants = [
   "b",
   "c",
@@ -37,7 +36,7 @@ const consonants = [
 // Clear keyboard container first
 keyBoardContainer.innerHTML = "";
 
-// Part of first problem
+//// 1. Display consonants as buttons
 consonants.forEach((el, i) => {
   const html = `<button class="keyButton btns" id="${i}">${el.toUpperCase()}</button>`;
 
@@ -46,11 +45,13 @@ consonants.forEach((el, i) => {
   const playWithButtons = function (index) {
     let buttons = keyBoardContainer.querySelectorAll(".keyButton");
 
-    //// 2. Create event listener function for each consonant button
+    //// 2. Create event listener for each consonant button
     buttons[index].addEventListener("click", function () {
       const currentWord = gameInfo.currentWord;
       const playersArray = gameInfo.playersArray;
       let subtractionFlag = false;
+
+      checkWord();
 
       // 3. Checks if button consonant is included in the current word
       currentWord.forEach((_, i) => {
@@ -62,6 +63,7 @@ consonants.forEach((el, i) => {
             "_",
             consonants[index].toUpperCase()
           );
+          checkWord();
         } else if (
           currentWord.every(
             (letter) => letter.toUpperCase() !== consonants[index].toUpperCase()
@@ -69,7 +71,7 @@ consonants.forEach((el, i) => {
         ) {
           // 3.2 If IT IS NOT
           if (!subtractionFlag) {
-            // Take one from attempts
+            // Count minus one to attempts
             gameInfo.attempts--;
             attemptsHTML.textContent = gameInfo.attempts;
             subtractionFlag = true;
@@ -78,13 +80,30 @@ consonants.forEach((el, i) => {
             buttons[index].classList.add("btnWrong");
           }
         }
+        // console.log(typeof currentWord[i].toUpperCase(), "currentWord");
+        // console.log(typeof playersArray[i].toUpperCase(), "playersArray");
       });
+
       updateUI();
+
+      //// 3.1.1 If currentWord is fully correct, sum one to guessed words label, change current word, reset the UI and attempts
+      function checkWord() {
+        if (
+          currentWord.every(
+            (letter, i) =>
+              letter.toUpperCase() === playersArray[i].toUpperCase()
+          )
+        ) {
+          console.log("Add one to the score my boy!");
+        }
+      }
     });
   };
 
   playWithButtons(i);
 });
+
+const guessedWord = function () {};
 
 //// 4. Display random word using the game info
 const gameInfo = {
@@ -155,7 +174,7 @@ const updateUI = function () {
 };
 updateUI();
 
-/* GENERATE NEW WORD BUTTON */
+//// 4. Generate new word and skip the current one
 generateWordBtn.addEventListener("click", () => {
   init(gameInfo);
   updateUI();
