@@ -45,15 +45,16 @@ consonants.forEach((el, i) => {
 
   const playWithButtons = function (index) {
     let buttons = keyBoardContainer.querySelectorAll(".keyButton");
-    let subtractionFlag = false;
+
     //// 2. Create event listener function for each consonant button
     buttons[index].addEventListener("click", function () {
       const currentWord = gameInfo.currentWord;
       const playersArray = gameInfo.playersArray;
+      let subtractionFlag = false;
 
       // 3. Checks if button consonant is included in the current word
       currentWord.forEach((_, i) => {
-        // 3.1 If YES, display consonant in the UI
+        // 3.1 If IT IS included, display consonant in the UI
         if (
           consonants[index].toUpperCase().includes(currentWord[i].toUpperCase())
         ) {
@@ -61,19 +62,23 @@ consonants.forEach((el, i) => {
             "_",
             consonants[index].toUpperCase()
           );
-        } else {
-          console.log("no guess");
-          // 3.2 If NO, take one from attempts and change button colors
+        } else if (
+          currentWord.every(
+            (letter) => letter.toUpperCase() !== consonants[index].toUpperCase()
+          )
+        ) {
+          // 3.2 If IT IS NOT
           if (!subtractionFlag) {
+            // Take one from attempts
             gameInfo.attempts--;
             attemptsHTML.textContent = gameInfo.attempts;
             subtractionFlag = true;
-            console.log(gameInfo.attempts);
+
+            // And change button colors
+            buttons[index].classList.add("btnWrong");
           }
         }
       });
-      console.log(gameInfo.attempts);
-
       updateUI();
     });
   };
@@ -138,7 +143,7 @@ init(gameInfo);
 const updateUI = function () {
   // Clearing container
   randomWordContainer.innerHTML = "";
-  // Exporting the current word to the HTML
+  // Export the current word to the HTML
   gameInfo.playersArray.forEach((el, i) => {
     // "el" is a string type
     const secretWordHTML = `<span class="currentWord secretWord--${i}">${el.toUpperCase()}</span>`;

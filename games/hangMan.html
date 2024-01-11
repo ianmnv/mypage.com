@@ -100,12 +100,23 @@
         border-radius: 0.7rem;
         border: 0.2rem solid #228be6;
         background-image: linear-gradient(to left, #ffffff, #a5d8ff);
-        transition: background-image 5s;
       }
 
       .btns:hover {
         background-image: linear-gradient(to right, #ffffff, #a5d8ff);
-        /* transition: background 5s; */
+      }
+
+      /* When player guess wrong */
+      .btnWrong {
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 0.7rem;
+        border: 0.2rem solid #fa5252;
+        background-image: linear-gradient(to left, #ffffff, #ffd8a8);
+      }
+
+      .btnWrong:hover {
+        background-image: linear-gradient(to right, #ffffff, #ffd8a8);
       }
 
       /* KEYBOARD CONTAINER AND ITS CHILDREN */
