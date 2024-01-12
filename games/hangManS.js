@@ -4,6 +4,8 @@
 
 // Elements
 const attemptsHTML = document.querySelector(".numbOfAtt");
+const totalWordsEl = document.querySelector(".totalWords");
+const guessedWordsEl = document.querySelector(".guessedWords");
 // Buttons
 const generateWordBtn = document.querySelector(".generateBtn");
 // Containers
@@ -126,10 +128,12 @@ const gameInfo = {
     "Coding",
     "Programming",
     "Angular",
+    "Git-bash",
   ],
-  attempts: 0,
   currentWord: [],
   playersArray: [],
+  attempts: 0,
+  manyOfWords: 0,
 
   // Get a random word from gameInfo.words and spread the word into an array
   getRandomWord() {
@@ -154,6 +158,11 @@ const gameInfo = {
   checkForAttempts() {
     this.attempts = this.currentWord.length - 2;
   },
+
+  // Total of words array length
+  howManyWords() {
+    this.manyOfWords = this.words.length;
+  },
 };
 
 // First state of the game
@@ -161,6 +170,7 @@ const init = (obj) => {
   obj.getRandomWord();
   obj.replaceWithUnderscore();
   obj.checkForAttempts();
+  obj.howManyWords();
 };
 init(gameInfo);
 
@@ -177,6 +187,7 @@ const updateUI = function () {
 
   // Setting the attempts for the current word
   attemptsHTML.textContent = gameInfo.attempts;
+  totalWordsEl.textContent = gameInfo.manyOfWords;
 };
 updateUI();
 
