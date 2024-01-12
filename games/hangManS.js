@@ -127,7 +127,7 @@ const gameInfo = {
     "Programming",
     "Angular",
   ],
-  attempts: 8,
+  attempts: 0,
   currentWord: [],
   playersArray: [],
 
@@ -149,18 +149,24 @@ const gameInfo = {
       return el;
     });
   },
+
+  // Attempts is the length of the current word - 2
+  checkForAttempts() {
+    this.attempts = this.currentWord.length - 2;
+  },
 };
 
 // First state of the game
 const init = (obj) => {
   obj.getRandomWord();
   obj.replaceWithUnderscore();
+  obj.checkForAttempts();
 };
 init(gameInfo);
 
 // Updates UI
 const updateUI = function () {
-  // Clearing container
+  // Clearing random word container
   randomWordContainer.innerHTML = "";
   // Export the current word to the HTML
   gameInfo.playersArray.forEach((el, i) => {
@@ -169,8 +175,8 @@ const updateUI = function () {
     randomWordContainer.insertAdjacentHTML("beforeend", secretWordHTML);
   });
 
-  // console.log(gameInfo.currentWord, "current word");
-  // console.log(gameInfo.playersArray, "player's array");
+  // Setting the attempts for the current word
+  attemptsHTML.textContent = gameInfo.attempts;
 };
 updateUI();
 
@@ -178,5 +184,4 @@ updateUI();
 generateWordBtn.addEventListener("click", () => {
   init(gameInfo);
   updateUI();
-  attemptsHTML.textContent = gameInfo.attempts = 8;
 });
