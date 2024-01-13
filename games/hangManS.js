@@ -35,6 +35,92 @@ const consonants = [
   "z",
 ];
 
+const gameInfo = {
+  words: [
+    "Developer",
+    "JavaScript",
+    "Web-Development",
+    "Objects",
+    "Arrays",
+    "TypeScript",
+    "React",
+    "Google",
+    "Functions",
+    "Methods",
+    "Keys",
+    "Variables",
+    "Back-end",
+    "Front-end",
+    "Computer",
+    "Coding",
+    "Programming",
+    "Angular",
+    "Git-bash",
+  ],
+  currentWord: [],
+  playersArray: [],
+  attempts: 0,
+  manyOfWords: 0,
+
+  // Get a random word from gameInfo.words
+  getRandomWord() {
+    this.currentWord = [
+      ...this.words[Math.trunc(Math.random() * this.words.length)],
+    ];
+  },
+
+  // Replace consonants with underscores
+  replaceWithUnderscore() {
+    this.playersArray = this.currentWord.map((letter) => {
+      consonants.forEach((con) => {
+        if (con.toUpperCase().includes(letter.toUpperCase())) {
+          // letter = letter.replace(new RegExp(con, "gi"), "_");
+          letter = letter.replace(con, "_");
+        }
+      });
+      return letter;
+    });
+  },
+
+  // Attempts is the length of the current word - 2
+  checkForAttempts() {
+    this.attempts = this.currentWord.length - 2;
+  },
+
+  // Total of words array length
+  howManyWords() {
+    this.manyOfWords = this.words.length;
+  },
+};
+
+// First state of the game
+const init = (obj) => {
+  obj.getRandomWord();
+  obj.replaceWithUnderscore();
+  obj.checkForAttempts();
+  obj.howManyWords();
+};
+init(gameInfo);
+
+// Updates UI
+const updateUI = function () {
+  // Clearing random word container
+  randomWordContainer.innerHTML = "";
+  // Export the current word to the HTML
+  gameInfo.playersArray.forEach((el, i) => {
+    // "el" is a string type
+    const secretWordHTML = `<span class="currentWord secretWord--${i}">${el.toUpperCase()}</span>`;
+    randomWordContainer.insertAdjacentHTML("beforeend", secretWordHTML);
+  });
+
+  // Setting the attempts for the current word
+  attemptsHTML.textContent = gameInfo.attempts;
+  totalWordsEl.textContent = gameInfo.manyOfWords;
+};
+updateUI();
+
+/* Start of event handlers */
+
 // Clear keyboard container first
 keyBoardContainer.innerHTML = "";
 
@@ -82,13 +168,11 @@ consonants.forEach((el, i) => {
             buttons[index].classList.add("btnWrong");
           }
         }
-        // console.log(typeof currentWord[i].toUpperCase(), "currentWord");
-        // console.log(typeof playersArray[i].toUpperCase(), "playersArray");
       });
 
       updateUI();
 
-      //// 3.1.1 If currentWord is fully correct, sum one to guessed words label, change current word, reset the UI and attempts
+      //// 3.1.1 If currentWord is fully correct, call init and updateUI functions, plus reset button colors
       function checkWord() {
         if (
           currentWord.every(
@@ -106,90 +190,6 @@ consonants.forEach((el, i) => {
 });
 
 const guessedWord = function () {};
-
-//// 4. Display random word using the game info
-const gameInfo = {
-  words: [
-    "Developer",
-    "JavaScript",
-    "Web-Development",
-    "Objects",
-    "Arrays",
-    "TypeScript",
-    "React",
-    "Google",
-    "Functions",
-    "Methods",
-    "Keys",
-    "Variables",
-    "Back-end",
-    "Front-end",
-    "Computer",
-    "Coding",
-    "Programming",
-    "Angular",
-    "Git-bash",
-  ],
-  currentWord: [],
-  playersArray: [],
-  attempts: 0,
-  manyOfWords: 0,
-
-  // Get a random word from gameInfo.words and spread the word into an array
-  getRandomWord() {
-    this.currentWord = [
-      ...this.words[Math.trunc(Math.random() * this.words.length)],
-    ];
-  },
-
-  // Replace consonants with underscores
-  replaceWithUnderscore() {
-    this.playersArray = this.currentWord.map((el) => {
-      for (let i = 0; i < consonants.length; i++) {
-        if (consonants[i].toUpperCase().includes(el.toUpperCase())) {
-          el = el.replace(new RegExp(consonants[i], "gi"), "_");
-        }
-      }
-      return el;
-    });
-  },
-
-  // Attempts is the length of the current word - 2
-  checkForAttempts() {
-    this.attempts = this.currentWord.length - 2;
-  },
-
-  // Total of words array length
-  howManyWords() {
-    this.manyOfWords = this.words.length;
-  },
-};
-
-// First state of the game
-const init = (obj) => {
-  obj.getRandomWord();
-  obj.replaceWithUnderscore();
-  obj.checkForAttempts();
-  obj.howManyWords();
-};
-init(gameInfo);
-
-// Updates UI
-const updateUI = function () {
-  // Clearing random word container
-  randomWordContainer.innerHTML = "";
-  // Export the current word to the HTML
-  gameInfo.playersArray.forEach((el, i) => {
-    // "el" is a string type
-    const secretWordHTML = `<span class="currentWord secretWord--${i}">${el.toUpperCase()}</span>`;
-    randomWordContainer.insertAdjacentHTML("beforeend", secretWordHTML);
-  });
-
-  // Setting the attempts for the current word
-  attemptsHTML.textContent = gameInfo.attempts;
-  totalWordsEl.textContent = gameInfo.manyOfWords;
-};
-updateUI();
 
 //// 4. Generate new word and skip the current one
 generateWordBtn.addEventListener("click", () => {
