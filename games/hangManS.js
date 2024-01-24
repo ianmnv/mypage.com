@@ -37,30 +37,30 @@ const consonants = [
 
 const gameInfo = {
   words: [
-    "Developer",
     "JavaScript",
-    "Web-Development",
-    "Objects",
-    "Arrays",
     "TypeScript",
     "React",
-    "Google",
-    "Functions",
+    "Angular",
+    "Developer",
+    "Web-Development",
+    "Git-bash",
+    // "Google",
     "Methods",
+    "Objects",
+    "Arrays",
+    "Functions",
     "Keys",
     "Variables",
     "Back-end",
     "Front-end",
     "Computer",
     "Coding",
-    "Programming",
-    "Angular",
-    "Git-bash",
+    // "Programming",
   ],
   currentWord: [],
   playersArray: [],
   attempts: 0,
-  manyOfWords: 0,
+  guessedWords: 0,
 
   // Get a random word from gameInfo.words
   getRandomWord() {
@@ -74,8 +74,8 @@ const gameInfo = {
     this.playersArray = this.currentWord.map((letter) => {
       consonants.forEach((con) => {
         if (con.toUpperCase().includes(letter.toUpperCase())) {
-          // letter = letter.replace(new RegExp(con, "gi"), "_");
-          letter = letter.replace(con, "_");
+          // We use the regular expression because it matches any letter regardless of the Case (uppercase or lowercase)
+          letter = letter.replace(new RegExp(con, "gi"), "_");
         }
       });
       return letter;
@@ -93,12 +93,15 @@ const gameInfo = {
   },
 };
 
+// Calling only once so totalWordsEl doesn't change
+gameInfo.howManyWords();
+
 // First state of the game
 const init = (obj) => {
+  // obj.copyingArray();
   obj.getRandomWord();
   obj.replaceWithUnderscore();
   obj.checkForAttempts();
-  obj.howManyWords();
 };
 init(gameInfo);
 
@@ -118,6 +121,15 @@ const updateUI = function () {
   totalWordsEl.textContent = gameInfo.manyOfWords;
 };
 updateUI();
+
+// Functions for handlers
+
+function checkWord(splice) {
+  const currentWordStr = [...gameInfo.currentWord].join("");
+  const findIndex = splice.findIndex((word) => word === currentWordStr);
+  splice.splice(findIndex, 1);
+}
+checkWord(gameInfo.words);
 
 /* Start of event handlers */
 
@@ -139,8 +151,6 @@ consonants.forEach((el, i) => {
       const playersArray = gameInfo.playersArray;
       let subtractionFlag = false;
 
-      checkWord();
-
       // 3. Checks if button consonant is included in the current word
       currentWord.forEach((_, i) => {
         // 3.1 If IT IS included, display consonant in the UI
@@ -151,7 +161,26 @@ consonants.forEach((el, i) => {
             "_",
             consonants[index].toUpperCase()
           );
-          checkWord();
+          // checkWord();
+
+          //// 3.1.1 If currentWord is fully correct
+          if (
+            currentWord.every(
+              (letter, i) =>
+                letter.toUpperCase() === playersArray[i].toUpperCase()
+            )
+          ) {
+            // Add one to the key property "guessedWords"
+            gameInfo.guessedWords++;
+            guessedWordsEl.textContent = gameInfo.guessedWords;
+
+            // Call init and updateUI functions
+            init(gameInfo);
+            updateUI();
+
+            // Delete that word from words array
+            checkWord(gameInfo.words);
+          }
         } else if (
           currentWord.every(
             (letter) => letter.toUpperCase() !== consonants[index].toUpperCase()
@@ -166,30 +195,18 @@ consonants.forEach((el, i) => {
 
             // And change button colors
             buttons[index].classList.add("btnWrong");
+
+            // Reset button color after sometime
+            setTimeout(() => buttons[index].classList.remove("btnWrong"), 1000);
           }
         }
       });
 
       updateUI();
-
-      //// 3.1.1 If currentWord is fully correct, call init and updateUI functions, plus reset button colors
-      function checkWord() {
-        if (
-          currentWord.every(
-            (letter, i) =>
-              letter.toUpperCase() === playersArray[i].toUpperCase()
-          )
-        ) {
-          console.log("Add one to the score my boy!");
-        }
-      }
     });
   };
-
   playWithButtons(i);
 });
-
-const guessedWord = function () {};
 
 //// 4. Generate new word and skip the current one
 generateWordBtn.addEventListener("click", () => {
