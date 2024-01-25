@@ -128,15 +128,12 @@ const gameInfo = {
 gameInfo.setWords();
 gameInfo.howManyWords();
 
-// First state of the game
 const init = (obj) => {
   obj.getRandomWord();
   obj.replaceWithUnderscore();
   obj.checkForAttempts();
 };
-init(gameInfo);
 
-// Updates UI
 const updateUI = function () {
   // Clearing random word container
   randomWordContainer.innerHTML = "";
@@ -147,21 +144,26 @@ const updateUI = function () {
     randomWordContainer.insertAdjacentHTML("beforeend", secretWordHTML);
   });
 
-  // Setting the attempts for the current word
   attemptsEl.textContent = gameInfo.attempts;
   totalWordsEl.textContent = gameInfo.manyOfWords;
 };
-updateUI();
 
-// Functions for handlers
-function deleteWord(splice) {
+const deleteWord = function (splice) {
   const currentWordStr = [...gameInfo.currentWord].join("");
   const findIndex = splice.findIndex((word) => word === currentWordStr);
   console.log(splice, findIndex);
   splice.splice(findIndex, 1);
-}
-deleteWord(gameInfo.words);
+};
 
+// First state of the game
+function refreshUI(obj) {
+  init(obj);
+  updateUI();
+  deleteWord(obj.words);
+}
+refreshUI(gameInfo);
+
+// Functions for handlers
 function playAgainFun(btn, title) {
   btn.addEventListener("click", () => {
     gameInfo.guessedWords = 0;
@@ -175,18 +177,14 @@ function playAgainFun(btn, title) {
       "<h1>THE HANGMAN GAME</h1> <h2>(WEB DEVELOPMENT EDITION)</h2>";
 
     gameInfo.setWords();
-    init(gameInfo);
-    updateUI();
-    deleteWord(gameInfo.words);
+    refreshUI(gameInfo);
     dontCopy();
   });
 }
 
 function checkWords(objOfWords) {
   if (objOfWords.length > 0) {
-    init(gameInfo);
-    updateUI();
-    deleteWord(objOfWords);
+    refreshUI(gameInfo);
   } else if (objOfWords.length === 0) {
     // Hide keyboard
     keyBoardContainer.style.display = "none";
