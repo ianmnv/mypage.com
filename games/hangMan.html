@@ -106,19 +106,6 @@
         background-image: linear-gradient(to right, #ffffff, #a5d8ff);
       }
 
-      /* When player guess wrong */
-      .btnWrong {
-        display: inline-block;
-        cursor: pointer;
-        border-radius: 0.7rem;
-        border: 0.2rem solid #fa5252;
-        background-image: linear-gradient(to left, #ffffff, #ffd8a8);
-      }
-
-      .btnWrong:hover {
-        background-image: linear-gradient(to right, #ffffff, #ffd8a8);
-      }
-
       /* KEYBOARD CONTAINER AND ITS CHILDREN */
       .keyBoard-container {
         display: grid;
@@ -136,6 +123,46 @@
         height: 6.5rem;
         width: 6.5rem;
       }
+
+      /* Dinamic styles */
+      .gameFinished {
+        padding: 10rem;
+        font-size: 5.5rem;
+        height: 45vh;
+      }
+
+      .btnWrong {
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 0.7rem;
+        border: 0.2rem solid #fa5252;
+        background-image: linear-gradient(to left, #ffffff, #ffd8a8);
+      }
+
+      .btnWrong:hover {
+        background-image: linear-gradient(to right, #ffffff, #ffd8a8);
+      }
+
+      .message {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2rem;
+        background-image: radial-gradient(circle, #ffe066, #f59f00, #e03131);
+      }
+
+      .messageText {
+        font-size: 2rem;
+      }
+
+      .btn--message {
+        display: inline-block;
+        padding: 0.5rem;
+        border-radius: 0.7rem;
+        border: 0.4rem solid #fff;
+        background-color: #ffcc00;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -147,7 +174,6 @@
     </header>
 
     <section class="mainBlock">
-      <!-- <div class="interactiveBlock"> -->
       <div class="interactiveContainer">
         <div class="attemptsDiv">
           <span class="numbOfAtt">8</span>
@@ -165,7 +191,6 @@
         <div class="randomWordContainer">
           <span class="currentWord">W</span><span class="currentWord">O</span
           ><span class="currentWord">R</span><span class="currentWord">D</span>
-          <!-- </div> -->
         </div>
       </div>
 

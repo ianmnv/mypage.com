@@ -3,7 +3,7 @@
 //// Selecting HTML elements
 
 // Elements
-const attemptsHTML = document.querySelector(".numbOfAtt");
+const attemptsEl = document.querySelector(".numbOfAtt");
 const totalWordsEl = document.querySelector(".totalWords");
 const guessedWordsEl = document.querySelector(".guessedWords");
 // Buttons
@@ -11,6 +11,7 @@ const generateWordBtn = document.querySelector(".generateBtn");
 // Containers
 const randomWordContainer = document.querySelector(".randomWordContainer");
 const keyBoardContainer = document.querySelector(".keyBoard-container");
+const interactiveCont = document.querySelector(".interactiveContainer");
 
 const consonants = [
   "b",
@@ -35,32 +36,62 @@ const consonants = [
   "z",
 ];
 
+function dontCopy() {
+  alert(
+    `Please don't claim this project as yours, I leave this repository in the open-source community so people see my work or for people to have a new idea for a project.`
+  );
+
+  const message = document.createElement("div");
+
+  message.innerHTML = `<p class="messageText">It is generally considered unethical and a violation of intellectual property rights to claim someone else's work as their own.
+  <br>
+  In the open-source community and software development in general,
+  attribution and respect for licenses are crucial. Check commits for the real creator. <br>
+  <a href="https://github.com/ianmnv">Where everything started</a></p>
+
+ <button class="btn--message messageText">Got it!</button>`;
+  message.classList.add("message");
+
+  document.querySelector("body").prepend(message);
+
+  document.querySelector(".btn--message").addEventListener("click", () => {
+    message.remove();
+    alert("It's play time!");
+  });
+}
+dontCopy();
+
 const gameInfo = {
-  words: [
-    // "JavaScript",
-    // "TypeScript",
-    "React",
-    "Angular",
-    // "Developer",
-    // "Web-Development",
-    // "Git-bash",
-    "Google",
-    // "Methods",
-    // "Objects",
-    "Arrays",
-    // "Functions",
-    "Keys",
-    // "Variables",
-    // "Back-end",
-    // "Front-end",
-    // "Computer",
-    // "Coding",
-    // "Programming",
-  ],
+  words: [],
   currentWord: [],
   playersArray: [],
   attempts: 0,
   guessedWords: 0,
+
+  // Set words
+  setWords() {
+    this.words = [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Angular",
+      // "Developer",
+      // "Web-Development",
+      "Git-bash",
+      "Google",
+      "Methods",
+      "Objects",
+      "Arrays",
+      "Functions",
+      "Keys",
+      // "Variables",
+      "Back-end",
+      "Front-end",
+      // "Computer",
+      "Coding",
+      // "Programming",
+    ];
+  },
 
   // Get a random word from gameInfo.words
   getRandomWord() {
@@ -93,7 +124,8 @@ const gameInfo = {
   },
 };
 
-// Calling only once so totalWordsEl doesn't change
+// Functions that only have to be called once
+gameInfo.setWords();
 gameInfo.howManyWords();
 
 // First state of the game
@@ -116,7 +148,7 @@ const updateUI = function () {
   });
 
   // Setting the attempts for the current word
-  attemptsHTML.textContent = gameInfo.attempts;
+  attemptsEl.textContent = gameInfo.attempts;
   totalWordsEl.textContent = gameInfo.manyOfWords;
 };
 updateUI();
@@ -125,64 +157,96 @@ updateUI();
 function deleteWord(splice) {
   const currentWordStr = [...gameInfo.currentWord].join("");
   const findIndex = splice.findIndex((word) => word === currentWordStr);
+  console.log(splice, findIndex);
   splice.splice(findIndex, 1);
 }
 deleteWord(gameInfo.words);
 
-function callback(e) {
+function playAgainFun(btn, title) {
+  btn.addEventListener("click", () => {
+    gameInfo.guessedWords = 0;
+    guessedWordsEl.textContent = gameInfo.guessedWords;
+
+    keyBoardContainer.style.display = "grid";
+
+    document.querySelector("h2").classList.remove("gameFinished");
+
+    title.innerHTML =
+      "<h1>THE HANGMAN GAME</h1> <h2>(WEB DEVELOPMENT EDITION)</h2>";
+
+    gameInfo.setWords();
+    init(gameInfo);
+    updateUI();
+    deleteWord(gameInfo.words);
+    dontCopy();
+  });
+}
+
+function checkWords(objOfWords) {
+  if (objOfWords.length > 0) {
+    init(gameInfo);
+    updateUI();
+    deleteWord(objOfWords);
+  } else if (objOfWords.length === 0) {
+    // Hide keyboard
+    keyBoardContainer.style.display = "none";
+    // Change title container
+    const titleCont = document.querySelector(".titleContainer");
+    const finishHTML = `<h2 class="gameFinished">CONGRATULATIONS! YOU FINISHED THE GAME! 🎉🙉 <br> 
+    You guessed ${gameInfo.guessedWords} out of ${gameInfo.manyOfWords} words. <br>
+    <button class="btns generateBtn" id="playAgainBtn">Play again! 👾</button></h2>`;
+    titleCont.innerHTML = finishHTML;
+
+    const playAgainBtn = document.getElementById("playAgainBtn");
+    // 5. Re-start the game
+    playAgainFun(playAgainBtn, titleCont);
+  }
+}
+
+function keyCallBack(e) {
   if (!e.target.classList.contains("keyButton")) return;
 
-  if (gameInfo.words) {
-    const button = e.target.textContent;
-    const currentWord = gameInfo.currentWord;
-    const playersArray = gameInfo.playersArray;
-    let subtractionFlag = false;
+  const button = e.target.textContent;
+  const currentWord = gameInfo.currentWord;
+  const playersArray = gameInfo.playersArray;
+  let subtractionFlag = false;
 
-    currentWord.forEach((_, i) => {
-      // 3.1 If IT IS included, display consonant in the UI
-      if (button.includes(currentWord[i].toUpperCase())) {
-        playersArray[i] = playersArray[i].replace("_", button);
+  currentWord.forEach((_, i) => {
+    // 3.1 If IT IS included
+    if (button.includes(currentWord[i].toUpperCase())) {
+      // Display consonant in the UI
+      playersArray[i] = playersArray[i].replace("_", button);
 
-        //// 3.1.1 If currentWord is fully correct
-        if (
-          currentWord.every(
-            (letter, i) =>
-              letter.toUpperCase() === playersArray[i].toUpperCase()
-          )
-        ) {
-          playersArray[i] = playersArray[i].replace("_", button);
-
-          // Add one to the key property "guessedWords"
-          gameInfo.guessedWords++;
-          guessedWordsEl.textContent = gameInfo.guessedWords;
-
-          // Call init and updateUI functions
-          init(gameInfo);
-          updateUI();
-
-          // Delete that word from words array
-          deleteWord(gameInfo.words);
-        }
-        // 3.2 If IT IS NOT included
-      } else if (
-        currentWord.every((letter) => letter.toUpperCase() !== button)
+      //// 3.1.1 If currentWord is fully correct
+      if (
+        currentWord.every(
+          (letter, i) => letter.toUpperCase() === playersArray[i].toUpperCase()
+        )
       ) {
-        if (!subtractionFlag) {
-          // Count minus one to attempts
-          gameInfo.attempts--;
-          attemptsHTML.textContent = gameInfo.attempts;
+        // Add one to the key property "guessedWords"
+        gameInfo.guessedWords++;
+        guessedWordsEl.textContent = gameInfo.guessedWords;
 
-          subtractionFlag = true;
-
-          // And change button colors
-          e.target.classList.add("btnWrong");
-
-          // Reset button color after sometime
-          setTimeout(() => e.target.classList.remove("btnWrong"), 1000);
-        }
+        checkWords(gameInfo.words);
       }
-    });
-  }
+      // 3.2 If IT IS NOT included
+    } else if (currentWord.every((letter) => letter.toUpperCase() !== button)) {
+      if (!subtractionFlag) {
+        // Count minus one to attempts
+        gameInfo.attempts--;
+        attemptsEl.textContent = gameInfo.attempts;
+
+        subtractionFlag = true;
+
+        // And change button colors
+        e.target.classList.add("btnWrong");
+
+        // Reset button color after sometime
+        setTimeout(() => e.target.classList.remove("btnWrong"), 1000);
+      }
+    }
+  });
+
   updateUI();
 }
 
@@ -198,10 +262,9 @@ consonants.forEach((el, i) => {
 
 /* Event handlers */
 
-keyBoardContainer.addEventListener("click", callback.bind());
+keyBoardContainer.addEventListener("click", keyCallBack.bind());
 
 //// 4. Generate new word and skip the current one
 generateWordBtn.addEventListener("click", () => {
-  init(gameInfo);
-  updateUI();
+  checkWords(gameInfo.words);
 });
