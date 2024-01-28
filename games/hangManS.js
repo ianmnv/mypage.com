@@ -68,7 +68,7 @@ const gameInfo = {
   attempts: 0,
   guessedWords: 0,
 
-  // Set words
+  // We need this function to play again
   setWords() {
     this.words = [
       "JavaScript",
@@ -92,6 +92,10 @@ const gameInfo = {
       // "Programming",
     ];
   },
+  currentWord: [],
+  playersArray: [],
+  attempts: 0,
+  guessedWords: 0,
 
   // Get a random word from gameInfo.words
   getRandomWord() {
@@ -148,11 +152,11 @@ const updateUI = function () {
   totalWordsEl.textContent = gameInfo.manyOfWords;
 };
 
-const deleteWord = function (splice) {
+const deleteWord = function (words) {
   const currentWordStr = [...gameInfo.currentWord].join("");
-  const findIndex = splice.findIndex((word) => word === currentWordStr);
-  console.log(splice, findIndex);
-  splice.splice(findIndex, 1);
+  const findIndex = words.findIndex((word) => word === currentWordStr);
+  console.log(words, findIndex);
+  words.splice(findIndex, 1);
 };
 
 // First state of the game
@@ -182,22 +186,33 @@ function playAgainFun(btn, title) {
   });
 }
 
+// 3.2.1
+function checkAttempts() {
+  let text;
+  if (gameInfo.attempts === 0) {
+    text = `YOU LOST THE GAME! 😭`;
+  } else if (gameInfo.words.length === 0) {
+    text = `GAME FINISHED! 🎉🙉`;
+  }
+  // Hide keyboard
+  keyBoardContainer.style.display = "none";
+  // Change title container
+  const titleCont = document.querySelector(".titleContainer");
+  const finishHTML = `<h2 class="gameFinished">${text}<br> 
+    You guessed ${gameInfo.guessedWords} out of ${gameInfo.manyOfWords} words. <br>
+    <button class="btns generateBtn" id="playAgainBtn">Play again! 👾</button></h2>`;
+  titleCont.innerHTML = finishHTML;
+
+  const playAgainBtn = document.getElementById("playAgainBtn");
+  // 5. Re-start the game
+  playAgainFun(playAgainBtn, titleCont);
+}
+
 function checkWords(objOfWords) {
   if (objOfWords.length > 0) {
     refreshUI(gameInfo);
   } else if (objOfWords.length === 0) {
-    // Hide keyboard
-    keyBoardContainer.style.display = "none";
-    // Change title container
-    const titleCont = document.querySelector(".titleContainer");
-    const finishHTML = `<h2 class="gameFinished">CONGRATULATIONS! YOU FINISHED THE GAME! 🎉🙉 <br> 
-    You guessed ${gameInfo.guessedWords} out of ${gameInfo.manyOfWords} words. <br>
-    <button class="btns generateBtn" id="playAgainBtn">Play again! 👾</button></h2>`;
-    titleCont.innerHTML = finishHTML;
-
-    const playAgainBtn = document.getElementById("playAgainBtn");
-    // 5. Re-start the game
-    playAgainFun(playAgainBtn, titleCont);
+    checkAttempts();
   }
 }
 
@@ -241,6 +256,8 @@ function keyCallBack(e) {
 
         // Reset button color after sometime
         setTimeout(() => e.target.classList.remove("btnWrong"), 1000);
+
+        if (gameInfo.attempts === 0) checkAttempts();
       }
     }
   });
