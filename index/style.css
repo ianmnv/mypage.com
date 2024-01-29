@@ -1,0 +1,180 @@
+/* GENERAL SETTINGS */
+
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(40, 48, 56);
+}
+
+/* HEADER */
+
+header {
+  background-color: rgb(80, 0, 0);
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+h1 {
+  padding-left: 100px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+a:link,
+a:visited {
+  color: whitesmoke;
+  margin-left: 90px;
+  text-decoration: none;
+  display: block;
+  font-size: larger;
+}
+
+a:link:first-child {
+  margin-left: 0;
+}
+
+a:link:last-child {
+  margin-right: 70px;
+}
+
+a:hover {
+  color: rgb(255, 161, 21);
+  text-decoration: underline wavy;
+  font-weight: bold;
+}
+
+/* MAIN CONTENT */
+
+.main-background {
+  width: 100%;
+}
+
+/* GRID CONTENT */
+
+.createdBy {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  row-gap: 5px;
+}
+
+.firstDiv {
+  border: double 10px rgb(255, 161, 21);
+  grid-column: 1 / -1;
+}
+
+h2 {
+  padding: 15px 15px;
+  font-size: 30px;
+  color: rgb(211, 211, 211);
+}
+
+.imgIan {
+  width: 300px;
+  padding: 25px;
+  background-color: rgb(211, 211, 211);
+}
+
+.storyDiv {
+  margin: 0px 25px;
+  position: relative;
+}
+
+h3::first-letter {
+  font-size: 38px;
+  font-style: italic;
+}
+
+h3 {
+  font-size: 27px;
+  font-weight: 700;
+  padding: 10px 0px;
+  padding-left: 60px;
+  font-style: italic;
+}
+
+p {
+  font-size: 25px;
+  background-color: #235e9e;
+}
+
+/* CONTACT INFO BUTTON */
+
+.divButton {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.contact-button {
+  color: #373737;
+  display: inline-block;
+  border-radius: 30px;
+  border: 3px orange solid;
+  padding: 15px 10px;
+  cursor: pointer;
+  background-color: rgb(172, 172, 172);
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.contact-button:hover {
+  background-color: white;
+  border: 3px rgb(255, 183, 28) solid;
+}
+
+.hidden {
+  display: none;
+}
+
+.close-info {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 3rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.contact-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+
+  background-color: rgb(255, 252, 252);
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 5rem 5rem rgba(0, 0, 0, 0.629);
+  z-index: 10;
+}
+
+.text-info {
+  color: #c31010;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.211);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+/* Finish contact info button */
