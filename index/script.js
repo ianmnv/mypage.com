@@ -20,6 +20,21 @@ document.querySelector(".close-info").addEventListener("click", closeInfo);
 
 overLay.addEventListener("click", closeInfo);
 
+// CLOCK
+
+const clock = document.querySelector(".clock");
+
+setInterval(() => {
+  const now = new Date();
+
+  clock.textContent = new Intl.DateTimeFormat(navigator.language, {
+    timeStyle: "medium",
+  }).format(now);
+}, 1000);
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+
 // Objects practice
 
 const myObject = {

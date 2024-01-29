@@ -1,57 +1,104 @@
-/* GENERAL SETTINGS */
-
 * {
-  font-family: sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
-  background-color: rgb(40, 48, 56);
+  font-family: "Montserrat", sans-serif;
+  margin: 10rem 17rem;
+  background-image: url(img/clouds-in-black.jpg);
+  background-size: cover;
 }
 
 /* HEADER */
 
 header {
-  background-color: rgb(80, 0, 0);
-  color: white;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: space-between;
-  padding: 30px;
+  height: 40vh;
+  color: #fff;
 }
 
-h1 {
-  padding-left: 100px;
+.header-img-container {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+
+  background: url(img/waves-in-black.jpg);
+  background-size: cover;
+  display: grid;
+  grid-template-columns: 1fr 15%;
+  grid-template-rows: 8rem 1fr;
 }
 
-nav {
+.head-title-cont {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
 }
 
-a:link,
-a:visited {
-  color: whitesmoke;
-  margin-left: 90px;
+#header-logo {
+  height: 8rem;
+  width: 8rem;
+}
+
+.header-title {
+  font-size: 3rem;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+
+  grid-column: 2 /-1;
+  grid-row: 1 / -1;
+}
+
+.nav-links:link,
+.nav-links:visited {
+  display: inline-block;
   text-decoration: none;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.nav-links::after {
+  content: "";
+  width: 0px;
+  height: 1px;
   display: block;
-  font-size: larger;
+  background: #e9ecef;
+  transition: 300ms;
 }
 
-a:link:first-child {
-  margin-left: 0;
+.nav-links:hover::after {
+  width: 100%;
 }
 
-a:link:last-child {
-  margin-right: 70px;
+.header-clock {
+  align-self: center;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 2rem;
+  width: fit-content;
 }
 
-a:hover {
-  color: rgb(255, 161, 21);
-  text-decoration: underline wavy;
-  font-weight: bold;
+.header-text {
+  font-size: 2rem;
+}
+
+.clock {
+  text-align: center;
+  font-size: 7rem;
 }
 
 /* MAIN CONTENT */
@@ -101,11 +148,6 @@ h3 {
   padding: 10px 0px;
   padding-left: 60px;
   font-style: italic;
-}
-
-p {
-  font-size: 25px;
-  background-color: #235e9e;
 }
 
 /* CONTACT INFO BUTTON */
