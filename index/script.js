@@ -32,10 +32,28 @@ setInterval(() => {
   }).format(now);
 }, 1000);
 
+// POEM
+
+const poemCont = document.querySelector(".poem");
+
+const backOpacity = function () {
+  poemCont.style.backgroundImage = this;
+  poemCont.style.backgroundSize = "cover";
+};
+
+poemCont.addEventListener(
+  "mouseover",
+  backOpacity.bind("url(img/city-at-night.jpg)")
+);
+
+poemCont.addEventListener("mouseout", backOpacity.bind("none"));
+
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 
 // Objects practice
+
+/*
 
 const myObject = {
   name: "Ian",
@@ -57,3 +75,16 @@ goalsFusion.ultimateGoal = "Earn a lot of money while enjoying what I do";
 myObject.currentJob = "Developer";
 console.log(myObject, "myObj");
 console.log(goalsFusion, "fusion");
+
+*/
+
+// Advance DOM in practice
+
+// Gets the entire HTML (head and body)
+console.log(document.documentElement);
+
+// Gets all elements with the same tag name (HTML collection)
+console.log(document.getElementsByTagName("a"));
+
+// Gets all elements with the same class name (HTML collection)
+console.log(document.getElementsByClassName("nav-links"));

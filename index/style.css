@@ -11,20 +11,20 @@ html {
 body {
   font-family: "Montserrat", sans-serif;
   margin: 10rem 17rem;
-  background-image: url(img/clouds-in-black.jpg);
+  background: url(img/clouds-in-black.jpg);
   background-size: cover;
+  background-attachment: fixed;
 }
 
 /* HEADER */
 
 header {
-  height: 40vh;
   color: #fff;
 }
 
 .header-img-container {
   width: 100%;
-  height: 100%;
+  height: 40vh;
   padding: 2rem;
 
   background: url(img/waves-in-black.jpg);
@@ -101,7 +101,45 @@ header {
   font-size: 7rem;
 }
 
+.poem {
+  height: 40vh;
+  margin: 5rem 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+blockquote {
+  font-size: 3rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+blockquote:first-child {
+  padding-left: 6rem;
+}
+
+cite {
+  font-size: 2rem;
+  font-weight: 500;
+
+  text-align: center;
+
+  grid-column: 1 / -1;
+  align-self: self-start;
+}
+
+.quote-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
 /* MAIN CONTENT */
+
+p {
+  font-size: 5rem;
+}
 
 .main-background {
   width: 100%;
