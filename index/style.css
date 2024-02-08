@@ -16,6 +16,13 @@ body {
   background-attachment: fixed;
 }
 
+h2,
+h3,
+h4 {
+  font-family: "PT Serif", serif;
+  font-style: italic;
+}
+
 /* HEADER */
 
 header {
@@ -47,7 +54,7 @@ header {
 }
 
 .header-title {
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 .nav {
@@ -135,57 +142,43 @@ cite {
   width: 2.4rem;
 }
 
-/* MAIN CONTENT */
+/* SECTION 1 */
 
-p {
-  font-size: 5rem;
-}
+#section-1 {
+  display: flex;
+  gap: 2rem;
 
-.main-background {
-  width: 100%;
-}
-
-/* GRID CONTENT */
-
-.createdBy {
-  display: grid;
-  grid-template-columns: 330px 1fr;
-  row-gap: 5px;
-}
-
-.firstDiv {
-  border: double 10px rgb(255, 161, 21);
-  grid-column: 1 / -1;
+  margin-top: 30rem;
 }
 
 h2 {
-  padding: 15px 15px;
-  font-size: 30px;
-  color: rgb(211, 211, 211);
+  font-size: 3rem;
+}
+
+.sec1-title {
+  margin-bottom: 1rem;
 }
 
 .imgIan {
-  width: 300px;
-  padding: 25px;
-  background-color: rgb(211, 211, 211);
+  max-height: 46rem;
 }
 
 .storyDiv {
-  margin: 0px 25px;
-  position: relative;
+  margin-top: 5rem;
 }
 
-h3::first-letter {
-  font-size: 38px;
-  font-style: italic;
+.sec1-story-title {
+  font-size: 6rem;
+  padding-left: 2rem;
 }
 
-h3 {
-  font-size: 27px;
-  font-weight: 700;
-  padding: 10px 0px;
-  padding-left: 60px;
-  font-style: italic;
+.sec1-story-title::first-letter {
+  font-size: 10rem;
+}
+
+.sec1-p {
+  font-size: 2rem;
+  padding: 2rem 15rem 2rem 2rem;
 }
 
 /* CONTACT INFO BUTTON */

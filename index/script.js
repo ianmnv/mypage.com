@@ -1,26 +1,26 @@
-// Selecting html elements
-const info = document.querySelector(".contact-info");
-const overLay = document.querySelector(".overlay");
+////// CONTACT INFO
+// const info = document.querySelector(".contact-info");
+// const overLay = document.querySelector(".overlay");
 
-info.classList.add("hidden");
+// info.classList.add("hidden");
 
-document
-  .querySelector(".contact-button")
-  .addEventListener("click", function () {
-    info.classList.remove("hidden");
-    overLay.classList.remove("hidden");
-  });
+// document
+//   .querySelector(".contact-button")
+//   .addEventListener("click", function () {
+//     info.classList.remove("hidden");
+//     overLay.classList.remove("hidden");
+//   });
 
-const closeInfo = function () {
-  info.classList.add("hidden");
-  overLay.classList.add("hidden");
-};
+// const closeInfo = function () {
+//   info.classList.add("hidden");
+//   overLay.classList.add("hidden");
+// };
 
-document.querySelector(".close-info").addEventListener("click", closeInfo);
+// document.querySelector(".close-info").addEventListener("click", closeInfo);
 
-overLay.addEventListener("click", closeInfo);
+// overLay.addEventListener("click", closeInfo);
 
-// CLOCK
+////// CLOCK
 
 const clock = document.querySelector(".clock");
 
@@ -32,7 +32,7 @@ setInterval(() => {
   }).format(now);
 }, 1000);
 
-// POEM
+////// POEM
 
 const poemCont = document.querySelector(".poem");
 
@@ -81,10 +81,10 @@ console.log(goalsFusion, "fusion");
 // Advance DOM in practice
 
 // Gets the entire HTML (head and body)
-console.log(document.documentElement);
+// console.log(document.documentElement);
 
-// Gets all elements with the same tag name (HTML collection)
-console.log(document.getElementsByTagName("a"));
+// // Gets all elements with the same tag name (HTML collection)
+// console.log(document.getElementsByTagName("a"));
 
-// Gets all elements with the same class name (HTML collection)
-console.log(document.getElementsByClassName("nav-links"));
+// // Gets all elements with the same class name (HTML collection)
+// console.log(document.getElementsByClassName("nav-links"));
