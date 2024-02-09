@@ -1,3 +1,4 @@
 # What's about this website?
 
-Basically I'm putting all of my knowledge of HTML, CSS & JS on this web-resume so anyone can find my projects in here or some of them.
+It's my web-resume where I write most of my knowledge of HTML, CSS & JS.
+You can find here a little about me and some of my repositories that I have created myself or with help of courses to reinforce my knowledge as well.
