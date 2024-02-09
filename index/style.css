@@ -142,13 +142,17 @@ cite {
   width: 2.4rem;
 }
 
+.sections {
+  border-top: solid black 1px;
+}
+
 /* SECTION 1 */
 
 #section-1 {
   display: flex;
   gap: 2rem;
 
-  margin-top: 30rem;
+  padding: 30rem 0 15rem;
 }
 
 h2 {
@@ -164,21 +168,39 @@ h2 {
 }
 
 .storyDiv {
-  margin-top: 5rem;
-}
-
-.sec1-story-title {
-  font-size: 6rem;
+  margin-top: 2rem;
   padding-left: 2rem;
 }
 
-.sec1-story-title::first-letter {
+.sec1-h2 {
+  font-size: 6rem;
+}
+
+.sec1-h2::first-letter {
   font-size: 10rem;
+}
+
+.sec1-container {
+  padding: 2rem 15rem 2rem 2rem;
+}
+
+.sec1-h3 {
+  font-size: 2.4rem;
+  padding: 3rem 0 1rem;
+}
+
+.sec1-h3:first-child {
+  padding: 0 0 1rem;
 }
 
 .sec1-p {
   font-size: 2rem;
-  padding: 2rem 15rem 2rem 2rem;
+}
+
+.sec1-a:link,
+.sec1-a:visited {
+  color: blue;
+  text-decoration: none;
 }
 
 /* CONTACT INFO BUTTON */
