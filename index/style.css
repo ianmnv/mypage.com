@@ -203,6 +203,49 @@ h2 {
   text-decoration: none;
 }
 
+/* SECTION 2 */
+
+.sec2-h2 {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.sec2-h3 {
+  font-size: 3rem;
+  padding: 7rem 0 2rem;
+}
+
+.sec2-a:link,
+.sec2-a:visited {
+  font-size: 1.5rem;
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sec2-imgs {
+  height: 15rem;
+  width: 14rem;
+}
+
+.sec2-games-contain {
+}
+
+.sec2-games {
+}
+
+.sec2-food-contain {
+}
+
+.sec2-food {
+}
+
+.sec2-items {
+  display: inline-block;
+}
+
 /* CONTACT INFO BUTTON */
 
 .divButton {
