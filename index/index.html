@@ -105,7 +105,7 @@
             Also since Mexico has an amazing and extraordinary cousine I'm in
             love with my country's food, so there's no doubt I'm a food lover.
           </p>
-          <h3 class="sec1-h3">What have I done?</h3>
+          <h3 class="sec1-h3">What do I do?</h3>
           <p class="sec1-p">
             Started to study front-end Web Develpment in 2018 and in the same
             year helped my uncle to build his website for his company called
@@ -129,57 +129,88 @@
 
       <div class="sec2-repos-contain">
         <article class="sec2-games-contain">
-          <button class="button-title">
+          <button class="button-title btn-title-active btns-s2" data-number="1">
             <div class="btn-info">
-              <h3 class="sec2-h3">Games</h3>
+              <h3 class="sec2-h3 s2-h3-active">Games</h3>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="arrow-point-right"
+                class="arrow arrow-active"
               >
                 <path
+                  class="arrow-icon-1 icons"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
                 />
               </svg>
             </div>
           </button>
 
-          <div class="sec2-games">
-            <div class="sec2-items">
-              <a href="../games/HangMan/hangMan.html" class="sec2-a">
-                <span>HangMan Game</span
-                ><img
-                  src="img/hangmanPic.png"
-                  alt="hangMan Game"
-                  class="sec2-imgs"
-              /></a>
+          <div class="sec2-games s2-cont-1 sect2">
+            <div class="s2-game-btns s2-btns">
+              <a
+                href="../games/HangMan/hangMan.html"
+                class="sec2-a content-active"
+                data-game="1"
+              >
+                <span>HangMan Game</span></a
+              >
+              <a
+                href="../games/GuessTheNumber/index.html"
+                class="sec2-a"
+                data-game="2"
+              >
+                <span>Guess the number</span></a
+              >
+              <a
+                href="../games/PigGame/index.html"
+                class="sec2-a"
+                data-game="3"
+              >
+                <span>The Pig Game</span></a
+              >
             </div>
 
-            <div class="sec2-items">
-              <a href="../games/GuessTheNumber/index.html" class="sec2-a">
-                <span>Guess the number</span
-                ><img
-                  src="img/question-mark.jpg"
-                  alt="question-mark"
-                  class="sec2-imgs"
-              /></a>
+            <div class="sec2-items game-1 content-active">
+              <img
+                src="img/hangmanPic.png"
+                alt="hangMan Game"
+                class="sec2-imgs"
+              />
+              <p class="s2-p">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error,
+                numquam.
+              </p>
             </div>
-            <div class="sec2-items">
-              <a href="../games/PigGame/index.html" class="sec2-a">
-                <span>The Pig Game</span>
-                <img src="img/dices.jpeg" alt="dices" class="sec2-imgs" />
-              </a>
+
+            <div class="sec2-items game-2 hidden">
+              <img
+                src="img/question-mark.jpg"
+                alt="question-mark"
+                class="sec2-imgs"
+              />
+              <p class="s2-p">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error,
+                numquam.
+              </p>
+            </div>
+
+            <div class="sec2-items game-3 hidden">
+              <img src="img/dices.jpeg" alt="dices" class="sec2-imgs" />
+              <p class="s2-p">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error,
+                numquam.
+              </p>
             </div>
           </div>
         </article>
 
         <article class="sec2-websites-contain">
-          <button class="button-title">
+          <button class="button-title btns-s2" data-number="2">
             <div class="btn-info">
               <h3 class="sec2-h3">Websites</h3>
               <svg
@@ -188,9 +219,10 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="arrow-point-right"
+                class="arrow"
               >
                 <path
+                  class="arrow-icon-2 icons"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   d="m8.25 4.5 7.5 7.5-7.5 7.5"
@@ -199,28 +231,45 @@
             </div>
           </button>
 
-          <div class="sec2-websites">
-            <div class="sec2-items">
-              <a href="../../pastaProject/index/index.html" class="sec2-a"
-                ><span>All Pasta</span
-                ><img src="img/pasta.jpg" alt="Pasta" class="sec2-imgs"
-              /></a>
+          <div class="sec2-websites hidden s2-cont-2 sect2">
+            <div class="s2-webs-btns s2-btns">
+              <a
+                href="../../pastaProject/index/index.html"
+                class="sec2-a content-active"
+                ><span>All Pasta</span></a
+              >
+              <a href="../websites/ChairShop/index.html" class="sec2-a"
+                ><span>Chair Shop</span></a
+              >
             </div>
 
-            <div class="sec2-items">
-              <a href="../websites/ChairShop/index.html" class="sec2-a"
-                ><span>Chair Shop</span
-                ><img
-                  src="../websites/ChairShop/hero.jpg"
-                  alt="Chair"
-                  class="sec2-imgs"
-              /></a>
+            <div class="sec2-items content-active">
+              <img src="img/pasta.jpg" alt="Pasta" class="sec2-imgs" />
+              <p class="s2-p">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error,
+                numquam. Lorem ipsum dolor, sit amet consectetur adipisicing
+                elit. Fugiat consequatur earum debitis dolor sit esse quae unde
+                et officia repudiandae similique dolore quo suscipit aliquam,
+                expedita nihil veritatis eligendi. Quisquam?
+              </p>
+            </div>
+
+            <div class="sec2-items hidden">
+              <img
+                src="../websites/ChairShop/hero.jpg"
+                alt="Chair"
+                class="sec2-imgs"
+              />
+              <p class="s2-p">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error,
+                numquam.
+              </p>
             </div>
           </div>
         </article>
 
         <article class="sec2-app-contain">
-          <button class="button-title">
+          <button class="button-title btns-s2" data-number="3">
             <div class="btn-info">
               <h3 class="sec2-h3">Apps</h3>
               <svg
@@ -229,9 +278,10 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="arrow-point-right"
+                class="arrow"
               >
                 <path
+                  class="arrow-icon-3 icons"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   d="m8.25 4.5 7.5 7.5-7.5 7.5"
@@ -240,15 +290,27 @@
             </div>
           </button>
 
-          <div class="sec2-apps">
-            <div class="sec2-items">
-              <a href="../websites/Bankist-APP/index.html" class="sec2-a"
-                ><span>Minimalist Bank APP</span
-                ><img
-                  src="../websites/Bankist-APP/logo.png"
-                  alt="Bankist logo"
-                  class="sec2-imgs"
-              /></a>
+          <div class="sec2-apps hidden s2-cont-3 sect2">
+            <div class="s2-apps-btns s2-btns">
+              <a
+                href="../websites/Bankist-APP/index.html"
+                class="sec2-a content-active"
+                ><span>Minimalist Bank APP</span></a
+              >
+            </div>
+            <div class="sec2-items content-active">
+              <img
+                src="../websites/Bankist-APP/icon.png"
+                alt="Bankist logo"
+                class="sec2-imgs"
+              />
+              <p class="s2-p">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error,
+                numquam. Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Dolore officiis veniam, animi inventore eligendi sunt
+                itaque enim! Quas dolores itaque, quos natus id nulla
+                consequatur dolor, similique ab laudantium adipisci?
+              </p>
             </div>
           </div>
         </article>

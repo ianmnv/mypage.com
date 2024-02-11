@@ -20,6 +20,8 @@
 
 // overLay.addEventListener("click", closeInfo);
 
+// //// HEADER
+
 ////// CLOCK
 
 const clock = document.querySelector(".clock");
@@ -78,6 +80,8 @@ const checkingOp = function (e) {
 nav.addEventListener("mouseover", checkingOp.bind(0.7));
 nav.addEventListener("mouseout", checkingOp.bind(1));
 
+// //// SECTION 1 STORY
+
 // Hovering my img
 const imgIan = document.querySelector(".imgIan");
 
@@ -87,6 +91,53 @@ const imgCallB = function () {
 };
 
 imgIan.addEventListener("mouseenter", imgCallB);
+
+// //// SECTION 2 REPOSITORIES
+
+// BUTTON TITLES
+const section2Btns = document.querySelectorAll(".btns-s2");
+const allH3 = document.querySelectorAll(".sec2-h3");
+const icons = document.querySelectorAll(".icons");
+const sec2Content = document.querySelectorAll(".sect2");
+
+section2Btns.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    // STYLE TITLE
+    section2Btns.forEach((btn) => btn.classList.remove("btn-title-active"));
+    btn.classList.add("btn-title-active");
+
+    allH3.forEach((h3) => h3.classList.remove("s2-h3-active"));
+
+    btn.querySelector(".sec2-h3").classList.add("s2-h3-active");
+
+    // arrow point right
+    // m8.25 4.5 7.5 7.5-7.5 7.5
+
+    // arrow point down
+    // m19.5 8.25-7.5 7.5-7.5-7.5
+
+    icons.forEach((i) => i.setAttribute("d", "m8.25 4.5 7.5 7.5-7.5 7.5"));
+
+    const dataNum = btn.dataset.number;
+
+    const icon = document.querySelector(`.arrow-icon-${dataNum}`);
+    icon.setAttribute("d", "m19.5 8.25-7.5 7.5-7.5-7.5");
+
+    // DISPLAY CONTENT
+    sec2Content.forEach((s) => s.classList.add("hidden"));
+    const section = document.querySelector(`.s2-cont-${dataNum}`);
+    section.classList.remove("hidden");
+  });
+});
+
+// GAMES CONTENT
+const gameBtnsContain = document.querySelector(".s2-game-btns");
+
+// WEBSITES CONTENT
+const webBtnsContain = document.querySelector(".s2-webs-btns");
+
+// APPS CONTENT
+const appBtnsContain = document.querySelector(".s2-apps-btns");
 
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
