@@ -268,7 +268,8 @@ h2 {
 
 .sec2-items {
   display: flex;
-  gap: 6rem;
+  align-items: center;
+  gap: 4rem;
   padding: 2rem;
 }
 
@@ -277,7 +278,9 @@ h2 {
   font-weight: lighter;
 
   color: #fff;
-  padding-right: 7rem;
+
+  padding-right: 10rem;
+  line-height: 2.7rem;
 }
 
 .s2-btns {
@@ -301,6 +304,7 @@ h2 {
 
   color: #fff;
   padding: 4rem 2rem;
+  width: 100%;
 }
 
 /* .sec2-a:hover,
