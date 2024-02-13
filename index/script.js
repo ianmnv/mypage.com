@@ -80,6 +80,26 @@ const checkingOp = function (e) {
 nav.addEventListener("mouseover", checkingOp.bind(0.7));
 nav.addEventListener("mouseout", checkingOp.bind(1));
 
+// //// STICKY NAVEGATION
+
+const header = document.querySelector("header");
+
+const s2Callback = function (entries) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) nav.classList.add("sticky-nav");
+  else nav.classList.remove("sticky-nav");
+};
+
+const objOpts = {
+  root: null,
+  threshold: 0,
+};
+
+const observer = new IntersectionObserver(s2Callback, objOpts);
+
+observer.observe(header);
+
 // //// SECTION 1 STORY
 
 // Hovering my img
@@ -164,28 +184,21 @@ webBtnsContain.addEventListener("mouseover", contentCallback);
 const appBtnsContain = document.querySelector(".s2-apps-btns");
 appBtnsContain.addEventListener("mouseover", contentCallback);
 
-////// Dropping an alert in Section 2
+////// Absolute element on Section 2
 
-const section2 = document.getElementById("section-2");
+const message = document.createElement("div");
 
-const s2Callback = function (entries) {
-  const [entry] = entries;
+message.innerHTML = `<p>
+Hover through the repositories to check its info, if you wanna check
+the actual repo, click on them.
+</p>
+<button class="btn-abs">Got it!</button>`;
+message.classList.add("absolute");
+document.getElementById("section-2").prepend(message);
 
-  if (entry.isIntersecting)
-    alert(
-      `Hover through the repositories to check its info, 
-      if you wanna check the actual repo, click on them.`
-    );
-};
+const messageBtn = document.querySelector(".btn-abs");
+messageBtn.addEventListener("click", () => message.remove());
 
-const objOpts = {
-  root: null,
-  threshold: 1,
-};
-
-const observer = new IntersectionObserver(s2Callback, objOpts);
-
-observer.observe(section2);
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 

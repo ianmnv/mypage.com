@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: "Montserrat", sans-serif;
-  margin: 10rem 17rem;
+  margin: 0 17rem 10rem;
   background: url(img/clouds-in-black.jpg);
   background-size: cover;
   background-attachment: fixed;
@@ -26,6 +26,7 @@ h4 {
 /* HEADER */
 
 header {
+  padding-top: 10rem;
   color: #fff;
 }
 
@@ -66,6 +67,22 @@ header {
 
   grid-column: 2 /-1;
   grid-row: 1 / -1;
+}
+
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 3rem;
+
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+
+  background: url(img/waves-in-black.jpg);
+  background-size: cover;
 }
 
 .nav-links:link,
@@ -205,6 +222,36 @@ h2 {
 
 /* SECTION 2 */
 
+#section-2 {
+  position: relative;
+}
+
+.absolute {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  position: absolute;
+  top: 15rem;
+  left: 17%;
+
+  font-size: 2rem;
+  padding: 1rem;
+  background-color: #dbe4ff8f;
+}
+
+.absolute button {
+  border: 1px solid #000;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.absolute button:hover {
+  background-color: #00000096;
+  color: #fff;
+}
+
 .sec2-h2 {
   text-align: center;
   font-size: 4rem;
@@ -308,10 +355,6 @@ h2 {
   padding: 4rem 2rem;
   width: 100%;
 }
-
-/* .sec2-a:hover,
-.sec2-a:focus {
-} */
 
 .sec2-imgs {
   height: 26rem;
