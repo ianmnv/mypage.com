@@ -1,4 +1,4 @@
-////// CONTACT INFO
+// //// CONTACT INFO
 // const info = document.querySelector(".contact-info");
 // const overLay = document.querySelector(".overlay");
 
@@ -50,7 +50,7 @@ poemCont.addEventListener(
 
 poemCont.addEventListener("mouseout", backOpacity.bind("none"));
 
-// //// MOVING TO SECTIONS
+////// MOVING TO SECTIONS
 
 const nav = document.querySelector(".nav");
 
@@ -63,7 +63,7 @@ nav.addEventListener("click", function (e) {
   }
 });
 
-// //// Changing opacity for anchors when hover
+////// Changing opacity for anchors when hover
 const checkingOp = function (e) {
   if (e.target.classList.contains("nav-links")) {
     const currentLink = e.target;
@@ -130,15 +130,62 @@ section2Btns.forEach((btn) => {
   });
 });
 
+////// INFO OF REPOS
+
+const items = document.querySelectorAll(".sec2-items");
+const anchors = document.querySelectorAll(".sec2-a");
+
+const contentCallback = function (e) {
+  if (!e.target.classList.contains("sec2-a")) return;
+
+  // Display info of repo
+  const dataContent = e.target.dataset.content;
+  items.forEach((i) => i.classList.add("hidden"));
+
+  const item = document.querySelector(`.content-${dataContent}`);
+  item.classList.remove("hidden");
+  item.classList.add("content-active");
+
+  // Change color of anchor
+  anchors.forEach((a) => a.classList.remove("content-active"));
+  if (e.target.classList.contains("sec2-a"))
+    e.target.classList.add("content-active");
+};
+
 // GAMES CONTENT
 const gameBtnsContain = document.querySelector(".s2-game-btns");
+gameBtnsContain.addEventListener("mouseover", contentCallback);
 
 // WEBSITES CONTENT
 const webBtnsContain = document.querySelector(".s2-webs-btns");
+webBtnsContain.addEventListener("mouseover", contentCallback);
 
 // APPS CONTENT
 const appBtnsContain = document.querySelector(".s2-apps-btns");
+appBtnsContain.addEventListener("mouseover", contentCallback);
 
+////// Dropping an alert in Section 2
+
+const section2 = document.getElementById("section-2");
+
+const s2Callback = function (entries) {
+  const [entry] = entries;
+
+  if (entry.isIntersecting)
+    alert(
+      `Hover through the repositories to check its info, 
+      if you wanna check the actual repo, click on them.`
+    );
+};
+
+const objOpts = {
+  root: null,
+  threshold: 1,
+};
+
+const observer = new IntersectionObserver(s2Callback, objOpts);
+
+observer.observe(section2);
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 

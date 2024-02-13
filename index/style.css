@@ -209,7 +209,7 @@ h2 {
   text-align: center;
   font-size: 4rem;
 
-  padding: 4rem 0 7rem;
+  padding: 22.7rem 0 7rem;
 }
 
 .sec2-repos-contain {
@@ -287,8 +287,10 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #49505798;
   flex-shrink: 0;
+
+  height: 30rem;
+  background-color: #49505798;
 }
 
 .content-active {
