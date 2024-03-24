@@ -80,7 +80,7 @@ const checkingOp = function (e) {
 nav.addEventListener("mouseover", checkingOp.bind(0.7));
 nav.addEventListener("mouseout", checkingOp.bind(1));
 
-// //// STICKY NAVEGATION
+////// STICKY NAVEGATION
 
 const header = document.querySelector("header");
 
@@ -111,6 +111,43 @@ const imgCallB = function () {
 };
 
 imgIan.addEventListener("mouseenter", imgCallB);
+
+////// MAP
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const { latitude } = position.coords;
+      const { longitude } = position.coords;
+
+      const coords = [latitude, longitude];
+
+      const map = L.map("map").setView(coords, 13);
+
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      L.marker(coords)
+        .addTo(map)
+        .bindPopup("A pretty CSS popup.<br> Easily customizable.")
+        .openPopup();
+    },
+    function () {
+      alert("Can't get location");
+    }
+  );
+}
+
+////// SECTION 1 BTNS
+// const btnRight = document.getElementById("btn-right");
+// const btnLeft = document.getElementById("btn-left");
+
+// const s1Container = document.querySelector(".s1-cont");
+
+// const storyEl = document.querySelector(".s1-art1");
+// const mapEl = document.getElementById("map");
 
 // //// SECTION 2 REPOSITORIES
 

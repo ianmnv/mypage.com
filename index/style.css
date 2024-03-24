@@ -212,11 +212,11 @@ cite {
   background-color: #e9ecef;
 }
 
-.btn-right {
+#btn-right {
   right: -5%;
 }
 
-.btn-left {
+#btn-left {
   left: -5%;
 }
 
