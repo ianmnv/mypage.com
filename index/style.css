@@ -6,10 +6,10 @@
 
 html {
   font-size: 62.5%;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
   margin: 0 17rem 10rem;
   background: url(img/clouds-in-black.jpg);
   background-size: cover;
@@ -166,10 +166,63 @@ cite {
 /* SECTION 1 */
 
 #section-1 {
-  display: flex;
-  gap: 2rem;
-
   padding: 30rem 0 15rem;
+  position: relative;
+}
+
+.s1-cont {
+  display: flex;
+  overflow-x: hidden;
+  gap: 6.5rem;
+}
+
+#s1-art1 {
+  display: flex;
+  flex-shrink: 0;
+  gap: 4rem;
+  max-width: 150rem;
+}
+
+#map {
+  z-index: -1;
+  height: 50rem;
+  width: 50rem;
+  background-color: #000;
+  flex-shrink: 0;
+}
+
+.btns {
+  position: absolute;
+  top: 55%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem;
+  border-radius: 2rem;
+  border: none;
+  cursor: pointer;
+
+  background-color: #fff;
+  box-shadow: 0 0 10px #000;
+}
+
+.btns:hover {
+  background-color: #e9ecef;
+}
+
+.btn-right {
+  right: -5%;
+}
+
+.btn-left {
+  left: -5%;
+}
+
+.icon-btns {
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
 h2 {
@@ -186,7 +239,6 @@ h2 {
 
 .storyDiv {
   margin-top: 2rem;
-  padding-left: 2rem;
 }
 
 .sec1-h2 {
@@ -198,7 +250,7 @@ h2 {
 }
 
 .sec1-container {
-  padding: 2rem 15rem 2rem 2rem;
+  padding: 2rem;
 }
 
 .sec1-h3 {

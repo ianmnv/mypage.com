@@ -21,6 +21,21 @@
       href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
+    <!-- LEAFLET API -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <!-- PAGE'S SCRIPT -->
+    <script defer src="script.js"></script>
   </head>
   <body>
     <header id="section-0">
@@ -87,41 +102,85 @@
     </header>
 
     <section id="section-1" class="sections">
-      <div class="sec1-pic-title">
-        <h2 class="sec1-title">Created by <strong>Ian M. Nava G.</strong></h2>
-        <img src="img/mi-foto.jpg" alt="Ian" class="imgIan" />
-      </div>
+      <div class="s1-cont">
+        <article id="s1-art1">
+          <div class="sec1-pic-title">
+            <h2 class="sec1-title">
+              Created by <strong>Ian M. Nava G.</strong>
+            </h2>
+            <img src="img/mi-foto.jpg" alt="Ian" class="imgIan" />
+          </div>
 
-      <div class="storyDiv">
-        <h2 class="sec1-h2">Brief Story Time</h2>
-        <div class="sec1-container">
-          <h3 class="sec1-h3">Who am I?</h3>
-          <p class="sec1-p">
-            Based on the crazy capital of Mexico City, borned to be wild and
-            free and since kid I've been doing exercise because my grandpa
-            showed me what sports there are and why is important to exercise
-            everyday, he's like a hero to me because he was a professional boxer
-            and soccer player; so I grabbed the same passion for sports.
-            <br />
-            Also since Mexico has an amazing and extraordinary cousine I'm in
-            love with my country's food, so there's no doubt I'm a food lover.
-          </p>
-          <h3 class="sec1-h3">What do I do?</h3>
-          <p class="sec1-p">
-            Started to study front-end Web Develpment in 2018 and in the same
-            year helped my uncle to build his website for his company called
-            Austral Centauri, known for shipping food like beans, cheakpeas,
-            white corn and wheat to other countries like U.S.A., Canada,
-            Colombia, Peru and Spain or sold locally to Mexican companies like
-            <a href="https://www.lacostena.com.mx/es/" class="sec1-a"
-              >La Costeña</a
-            >,
-            <a href="https://grupoherdez.com.mx/" class="sec1-a"
-              >Grupo Herdez</a
-            >
-            and more.
-          </p>
-        </div>
+          <div class="storyDiv">
+            <h2 class="sec1-h2">Brief Story Time</h2>
+            <div class="sec1-container">
+              <h3 class="sec1-h3">Who am I?</h3>
+              <p class="sec1-p">
+                Based on the crazy capital of Mexico City, borned to be wild and
+                free and since kid I've been doing exercise because my grandpa
+                showed me what sports there are and why is important to exercise
+                everyday, he's like a hero to me because he was a professional
+                boxer and soccer player; so I grabbed the same passion for
+                sports.
+                <br />
+                Also since Mexico has an amazing and extraordinary cousine I'm
+                in love with my country's food, so there's no doubt I'm a food
+                lover.
+              </p>
+              <h3 class="sec1-h3">What do I do?</h3>
+              <p class="sec1-p">
+                Started to study front-end Web Develpment in 2018 and in the
+                same year helped my uncle to build his website for his company
+                called Austral Centauri, known for shipping food like beans,
+                cheakpeas, white corn and wheat to other countries like U.S.A.,
+                Canada, Colombia, Peru and Spain or sold locally to Mexican
+                companies like
+                <a href="https://www.lacostena.com.mx/es/" class="sec1-a"
+                  >La Costeña</a
+                >,
+                <a href="https://grupoherdez.com.mx/" class="sec1-a"
+                  >Grupo Herdez</a
+                >
+                and more.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article id="map"></article>
+
+        <button class="btns btn-right">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="icon-btns"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m8.25 4.5 7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </button>
+        <button class="btns btn-left">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="icon-btns"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"
+            />
+          </svg>
+        </button>
       </div>
     </section>
 
@@ -383,7 +442,5 @@
       </ul>
     </div>
     <div class="overlay hidden"></div> -->
-
-    <script src="script.js"></script>
   </body>
 </html>
