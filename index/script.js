@@ -144,13 +144,10 @@ if (navigator.geolocation) {
 const btnRight = document.getElementById("btn-right");
 const btnLeft = document.getElementById("btn-left");
 
-const s1Container = document.querySelector(".s1-cont");
 const sliders = document.querySelectorAll(".slide");
 
-const storyEl = document.getElementById("s1-art1");
-const mapEl = document.getElementById("map");
-
 let curSlide = 0;
+const maxSlides = sliders.length - 1;
 
 const goToSlide = function (slide) {
   sliders.forEach((s, i) => {
@@ -161,17 +158,60 @@ const goToSlide = function (slide) {
 goToSlide(0);
 
 const nextSlide = function () {
-  curSlide++;
+  if (curSlide === maxSlides) {
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
   goToSlide(curSlide);
 };
 
 const previousSlide = function () {
-  curSlide--;
+  if (curSlide === 0) {
+    curSlide = maxSlides;
+  } else {
+    curSlide--;
+  }
   goToSlide(curSlide);
 };
 
 btnRight.addEventListener("click", nextSlide);
 btnLeft.addEventListener("click", previousSlide);
+
+// SECTION 1 ARROW BTNS
+document.addEventListener("keydown", function (e) {
+  e.key === "ArrowRight" && nextSlide();
+  e.key === "ArrowLeft" && previousSlide();
+});
+
+// LOCATIONS
+
+const locationCont = document.querySelector(".s1-slide-child");
+locationCont.innerHTML = `
+<h1 class='map-title'>LOCATIONS:</h1>
+<div class='map-div'>
+  <button class='map-btn-country'>MEXICO</button> 
+  <div>
+    <button class='map-btn-city'>CDMX</button>
+    <button class='map-btn-city'>Beautiful cities</button>
+
+  </div> 
+  <div>
+    <button class='map-btn-places'>Childhood</button>
+    <button class='map-btn-places'>Favorite places</button>
+  </div>
+  <div>
+  </div>
+</div>
+
+<div class='map-div'>
+  <button class='map-btn-country'>CANADA</button>
+  <div>
+    <button class='map-btn-city'>Vancouver</button>
+    <button class='map-btn-city'>Favorite places</button>
+  </div>
+</div>
+`;
 
 // //// SECTION 2 REPOSITORIES
 
