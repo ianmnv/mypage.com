@@ -166,29 +166,39 @@ cite {
 /* SECTION 1 */
 
 #section-1 {
-  padding: 30rem 0 15rem;
   position: relative;
-}
-
-.s1-cont {
-  display: flex;
-  overflow-x: hidden;
-  gap: 6.5rem;
+  min-height: 97rem;
+  overflow: hidden;
 }
 
 #s1-art1 {
-  display: flex;
-  flex-shrink: 0;
   gap: 4rem;
-  max-width: 150rem;
 }
 
 #map {
   z-index: -1;
-  height: 50rem;
-  width: 50rem;
+  height: 51rem;
+  width: 50%;
   background-color: #000;
-  flex-shrink: 0;
+}
+
+.map {
+  margin-left: 12rem;
+}
+
+.s1-slide-child {
+  width: 50%;
+  background-color: #000;
+}
+
+.slide {
+  position: absolute;
+  top: 27rem;
+
+  display: flex;
+  justify-content: center;
+
+  min-width: 130rem;
 }
 
 .btns {
@@ -213,11 +223,11 @@ cite {
 }
 
 #btn-right {
-  right: -5%;
+  right: 2%;
 }
 
 #btn-left {
-  left: -5%;
+  left: 2%;
 }
 
 .icon-btns {
@@ -238,7 +248,7 @@ h2 {
 }
 
 .storyDiv {
-  margin-top: 2rem;
+  width: 60%;
 }
 
 .sec1-h2 {
@@ -250,7 +260,7 @@ h2 {
 }
 
 .sec1-container {
-  padding: 2rem;
+  padding: 0 2rem;
 }
 
 .sec1-h3 {

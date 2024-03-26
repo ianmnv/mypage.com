@@ -141,13 +141,37 @@ if (navigator.geolocation) {
 }
 
 ////// SECTION 1 BTNS
-// const btnRight = document.getElementById("btn-right");
-// const btnLeft = document.getElementById("btn-left");
+const btnRight = document.getElementById("btn-right");
+const btnLeft = document.getElementById("btn-left");
 
-// const s1Container = document.querySelector(".s1-cont");
+const s1Container = document.querySelector(".s1-cont");
+const sliders = document.querySelectorAll(".slide");
 
-// const storyEl = document.querySelector(".s1-art1");
-// const mapEl = document.getElementById("map");
+const storyEl = document.getElementById("s1-art1");
+const mapEl = document.getElementById("map");
+
+let curSlide = 0;
+
+const goToSlide = function (slide) {
+  sliders.forEach((s, i) => {
+    s.style.transform = `translateX(${120 * (i - slide)}%)`;
+  });
+};
+
+goToSlide(0);
+
+const nextSlide = function () {
+  curSlide++;
+  goToSlide(curSlide);
+};
+
+const previousSlide = function () {
+  curSlide--;
+  goToSlide(curSlide);
+};
+
+btnRight.addEventListener("click", nextSlide);
+btnLeft.addEventListener("click", previousSlide);
 
 // //// SECTION 2 REPOSITORIES
 
