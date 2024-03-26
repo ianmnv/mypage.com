@@ -175,21 +175,6 @@ cite {
   gap: 4rem;
 }
 
-#map {
-  z-index: -1;
-  height: 51rem;
-  width: 50%;
-}
-
-.map {
-  margin-left: 12rem;
-}
-
-.s1-slide-child {
-  width: 50%;
-  border: #000 1px solid;
-}
-
 .slide {
   position: absolute;
   top: 27rem;
@@ -283,6 +268,51 @@ h2 {
   text-decoration: none;
 }
 
+/* MAP */
+
+#map {
+  z-index: -1;
+  height: 51rem;
+  width: 50%;
+}
+
+.map {
+  margin-left: 12rem;
+}
+
+.s1-slide-child {
+  width: 50%;
+  border: #000 1px solid;
+}
+
+.map-title {
+  font-size: 5rem;
+  background-color: #49505798;
+}
+
+.map-div button {
+  border: none;
+  background-color: transparent;
+  padding: 1rem;
+  font-size: 2rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.map-div button:hover {
+  background-color: #49505798;
+}
+
+.map-countries,
+.map-cities {
+  display: flex;
+}
+
+.map-countries button {
+  padding: 1.5rem;
+  font-size: 2.5rem;
+}
+
 /* SECTION 2 */
 
 #section-2 {
@@ -372,10 +402,6 @@ h2 {
   display: flex;
 }
 
-.hidden {
-  display: none;
-}
-
 .sec2-items {
   display: flex;
   align-items: center;
@@ -451,10 +477,6 @@ h2 {
   border: 3px rgb(255, 183, 28) solid;
 }
 
-.hidden {
-  display: none;
-}
-
 .close-info {
   position: absolute;
   top: 1.2rem;
@@ -495,3 +517,8 @@ h2 {
   z-index: 5;
 }
 /* Finish contact info button */
+
+/* HIDDEN CLASS */
+.hidden {
+  display: none;
+}

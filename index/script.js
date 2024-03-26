@@ -189,26 +189,21 @@ document.addEventListener("keydown", function (e) {
 const locationCont = document.querySelector(".s1-slide-child");
 locationCont.innerHTML = `
 <h1 class='map-title'>LOCATIONS:</h1>
-<div class='map-div'>
-  <button class='map-btn-country'>MEXICO</button> 
-  <div>
-    <button class='map-btn-city'>CDMX</button>
-    <button class='map-btn-city'>Beautiful cities</button>
 
+<div class='map-div'>
+  <div class='map-countries'>
+    <button class='map-btn-country'>MEXICO</button>
+    <button class='map-btn-country'>CANADA</button>
+  </div>
+
+  <div class='map-cities'>
+    <button class='map-btn-mx'>CDMX</button>
+    <button class='map-btn-mx'>Beautiful cities</button>
   </div> 
-  <div>
-    <button class='map-btn-places'>Childhood</button>
-    <button class='map-btn-places'>Favorite places</button>
-  </div>
-  <div>
-  </div>
-</div>
 
-<div class='map-div'>
-  <button class='map-btn-country'>CANADA</button>
-  <div>
-    <button class='map-btn-city'>Vancouver</button>
-    <button class='map-btn-city'>Favorite places</button>
+  <div class='map-cities'>
+    <button class='map-btn-ca'>Vancouver</button>
+    <button class='map-btn-ca'>Favorite places</button>
   </div>
 </div>
 `;
