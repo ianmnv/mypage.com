@@ -170,12 +170,12 @@ locationCont.innerHTML = `
 
   <div class='map-cities map-city-mx'>
     <button class='map-btn-mx map-btn-city' data-city='0'>CDMX</button>
-    <button class='map-btn-mx map-btn-city' data-city='1'>Beautiful cities</button>
+    <button class='map-btn-mx map-btn-city' data-city='1'>Favorite places</button>
   </div> 
 
   <div class='map-cities map-city-ca'>
-    <button class='map-btn-ca map-btn-city' data-city='3'>Vancouver</button>
-    <button class='map-btn-ca map-btn-city' data-city='4'>Favorite places</button>
+    <button class='map-btn-ca map-btn-city' data-city='2'>Vancouver</button>
+    <button class='map-btn-ca map-btn-city' data-city='3'>Favorite places</button>
   </div>
 
   <div id='map-info'></div>
@@ -203,10 +203,39 @@ countriesCont.addEventListener("click", function (e) {
 });
 
 const citysInfo = {
-  0: `Mexico City is by far my favorite city because here my whole childhood happen, my family is here and 90% of my friends, 
-  also in Mexico City you will never get bored since there's a lot to do here 
-  but since it's a very popular city it can also be chaotic because through time a lot of time have arrived.`,
-  1: `In my first place of my favorite places in Mexico, I find Quintana Roo top-notch for having beautiful beaches, beautiful places to go like Cancun, Holbox, Tulum and a lot of party`,
+  0: [
+    `Mexico City is by far my favorite city because here my whole childhood happen, my family is here and 90% of my friends, 
+  also in Mexico City you will never get bored since there's a lot to do here and because you'll find amazing food very easy 
+  but since it's a very popular city it can also be chaotic because through time a lot of people have arrived.`,
+  ],
+  1: [
+    `1. I find Quintana Roo top-notch for having beautiful beaches, 
+    beautiful places to go like Cancun, Holbox, Tulum and a lot of party. <br> <br> 
+  2. In second place we have Oaxaca [mostly all beaches] because this state is rich in culture, 
+  festivals and food here is just amazing, many of famous dishes in Mexico come from Oaxaca. <br> <br>
+  3. Puebla also enters in this list for the colorful city it has, 
+  for the delicious food you can find here and the friendly people same as in all places in Mexico (almost 😬). <br> <br>
+  4. In Jalisco, we have Puerto Vallarta and Manzanillo for having great weather, 
+  great beaches as well and fun atmosphere and of course great food as well.`,
+  ],
+  2: [
+    `Vancouver is just an amazing, modern, clean, filled with nature city, I liked every day living there, 
+    was there for 4.3 years but in my personal opinion it also has a lot
+  to build like culture and local food, 
+  I say this because since most of the people in there are from different countries there's no really culture and it's clear as the air it is missing, 
+  probably many people will disagree with me but that's my personal opinion
+  on Van, I'm not saying it's not amazing but in countries there's always that is something missing even in Mexico; 
+  loved the parks, the city but since I come from a huge city, Vancouver was kinda empty for me lol.`,
+  ],
+  3: [
+    `
+  1. Whistler 😍: Small town but with an incredible views from the top of the mountians, 
+  for skiing and mountain bike is just perfect (risky, but perfect) with delicious restaurants around (only went to 3 tho). <br> <br>
+  2. North Vancouver also has a beautiful view to the city 
+  and mostly in summer there are a lot of festivals and events in that area which makes it perfect to socialize. <br> <br>
+  3. Victoria is also another super small city but very beautiful everywhere you walk or go, mostly all Vancouver island is very pretty. 
+  There are also very good restaurants but the one that showed up the most was 'Milestones', kinda miss that restaurant.`,
+  ],
 };
 
 const callBCities = function (e) {
@@ -220,11 +249,15 @@ const callBCities = function (e) {
   const mapDiv = document.getElementById("map-info");
   mapDiv.innerHTML = "";
 
+  const dataCity = target.dataset.city;
+
   const infoEl = document.createElement("div");
-  infoEl.innerHTML = `<p>${citysInfo[0]}</p>`;
+  infoEl.innerHTML = `<p>${citysInfo[dataCity][0]}</p>`;
   infoEl.style.fontSize = "2rem";
   infoEl.style.padding = "2rem";
-  mapDiv.style.width = "100%";
+  infoEl.style.height = "34rem";
+  infoEl.style.overflowY = "auto";
+  infoEl.style.fontWeight = "500";
   mapDiv.append(infoEl);
 };
 
