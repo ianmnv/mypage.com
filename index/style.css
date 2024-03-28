@@ -278,6 +278,7 @@ h2 {
 
 .map {
   margin-left: 12rem;
+  max-width: 130rem;
 }
 
 .s1-slide-child {
@@ -288,19 +289,15 @@ h2 {
 .map-title {
   font-size: 5rem;
   background-color: #49505798;
+  border-bottom: #000 solid 1px;
 }
 
 .map-div button {
   border: none;
-  background-color: transparent;
   padding: 1rem;
   font-size: 2rem;
   width: 100%;
   cursor: pointer;
-}
-
-.map-div button:hover {
-  background-color: #49505798;
 }
 
 .map-countries,
@@ -308,9 +305,26 @@ h2 {
   display: flex;
 }
 
+.map-btn-country,
+.map-btn-mx,
+.map-btn-ca {
+  background-color: transparent;
+}
+
+.map-btn-country:hover,
+.map-btn-mx:hover,
+.map-btn-ca:hover {
+  background-color: #49505798;
+}
+
 .map-countries button {
   padding: 1.5rem;
   font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.map-active {
+  background-color: #49505798;
 }
 
 /* SECTION 2 */

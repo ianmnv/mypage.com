@@ -112,35 +112,7 @@ const imgCallB = function () {
 
 imgIan.addEventListener("mouseenter", imgCallB);
 
-////// MAP
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      const { latitude } = position.coords;
-      const { longitude } = position.coords;
-
-      const coords = [latitude, longitude];
-
-      const map = L.map("map").setView(coords, 13);
-
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
-
-      L.marker(coords)
-        .addTo(map)
-        .bindPopup("A pretty CSS popup.<br> Easily customizable.")
-        .openPopup();
-    },
-    function () {
-      alert("Can't get location");
-    }
-  );
-}
-
-////// SECTION 1 BTNS
+////// SLIDER
 const btnRight = document.getElementById("btn-right");
 const btnLeft = document.getElementById("btn-left");
 
@@ -178,7 +150,7 @@ const previousSlide = function () {
 btnRight.addEventListener("click", nextSlide);
 btnLeft.addEventListener("click", previousSlide);
 
-// SECTION 1 ARROW BTNS
+// SLIDER ARROW BTNS
 document.addEventListener("keydown", function (e) {
   e.key === "ArrowRight" && nextSlide();
   e.key === "ArrowLeft" && previousSlide();
@@ -192,21 +164,103 @@ locationCont.innerHTML = `
 
 <div class='map-div'>
   <div class='map-countries'>
-    <button class='map-btn-country'>MEXICO</button>
-    <button class='map-btn-country'>CANADA</button>
+    <button class='map-btn-country' data-country='mx'>MEXICO</button>
+    <button class='map-btn-country' data-country='ca'>CANADA</button>
   </div>
 
-  <div class='map-cities'>
-    <button class='map-btn-mx'>CDMX</button>
-    <button class='map-btn-mx'>Beautiful cities</button>
+  <div class='map-cities map-city-mx'>
+    <button class='map-btn-mx map-btn-city' data-city='0'>CDMX</button>
+    <button class='map-btn-mx map-btn-city' data-city='1'>Beautiful cities</button>
   </div> 
 
-  <div class='map-cities'>
-    <button class='map-btn-ca'>Vancouver</button>
-    <button class='map-btn-ca'>Favorite places</button>
+  <div class='map-cities map-city-ca'>
+    <button class='map-btn-ca map-btn-city' data-city='3'>Vancouver</button>
+    <button class='map-btn-ca map-btn-city' data-city='4'>Favorite places</button>
   </div>
+
+  <div id='map-info'></div>
 </div>
 `;
+
+const countriesCont = document.querySelector(".map-countries");
+const cities = document.querySelectorAll(".map-cities");
+
+cities.forEach((c) => c.classList.add("hidden"));
+
+countriesCont.addEventListener("click", function (e) {
+  if (!e.target.classList.contains("map-btn-country")) return;
+
+  cities.forEach((c) => c.classList.add("hidden"));
+  document
+    .querySelectorAll(".map-btn-country")
+    .forEach((c) => c.classList.remove("map-active"));
+
+  const target = e.target;
+  const country = target.dataset.country;
+
+  document.querySelector(`.map-city-${country}`).classList.remove("hidden");
+  target.classList.add("map-active");
+});
+
+const citysInfo = {
+  0: `Mexico City is by far my favorite city because here my whole childhood happen, my family is here and 90% of my friends, 
+  also in Mexico City you will never get bored since there's a lot to do here 
+  but since it's a very popular city it can also be chaotic because through time a lot of time have arrived.`,
+  1: `In my first place of my favorite places in Mexico, I find Quintana Roo top-notch for having beautiful beaches, beautiful places to go like Cancun, Holbox, Tulum and a lot of party`,
+};
+
+const callBCities = function (e) {
+  const target = e.target;
+
+  document
+    .querySelectorAll(".map-btn-city")
+    .forEach((c) => c.classList.remove("map-active"));
+  target.classList.add("map-active");
+
+  const mapDiv = document.getElementById("map-info");
+  mapDiv.innerHTML = "";
+
+  const infoEl = document.createElement("div");
+  infoEl.innerHTML = `<p>${citysInfo[0]}</p>`;
+  infoEl.style.fontSize = "2rem";
+  infoEl.style.padding = "2rem";
+  mapDiv.style.width = "100%";
+  mapDiv.append(infoEl);
+};
+
+const mxCity = document.querySelector(".map-city-mx");
+const caCity = document.querySelector(".map-city-ca");
+
+mxCity.addEventListener("click", callBCities);
+caCity.addEventListener("click", callBCities);
+
+////// MAP
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const { latitude } = position.coords;
+      const { longitude } = position.coords;
+
+      const coords = [latitude, longitude];
+
+      const map = L.map("map").setView(coords, 13);
+
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      L.marker(coords)
+        .addTo(map)
+        .bindPopup("A pretty CSS popup.<br> Easily customizable.")
+        .openPopup();
+    },
+    function () {
+      alert("Can't get location");
+    }
+  );
+}
 
 // //// SECTION 2 REPOSITORIES
 
