@@ -110,7 +110,7 @@ const imgCallB = function () {
   imgIan.removeEventListener("mouseenter", imgCallB);
 };
 
-imgIan.addEventListener("mouseenter", imgCallB);
+// imgIan.addEventListener("mouseenter", imgCallB);
 
 ////// SLIDER
 const btnRight = document.getElementById("btn-right");
@@ -118,7 +118,7 @@ const btnLeft = document.getElementById("btn-left");
 
 const sliders = document.querySelectorAll(".slide");
 
-let curSlide = 0;
+let curSlide = 1;
 const maxSlides = sliders.length - 1;
 
 const goToSlide = function (slide) {
@@ -127,7 +127,7 @@ const goToSlide = function (slide) {
   });
 };
 
-goToSlide(0);
+goToSlide(1);
 
 const nextSlide = function () {
   if (curSlide === maxSlides) {
@@ -156,52 +156,8 @@ document.addEventListener("keydown", function (e) {
   e.key === "ArrowLeft" && previousSlide();
 });
 
-// LOCATIONS
-
+// MAP INFO
 const locationCont = document.querySelector(".s1-slide-child");
-locationCont.innerHTML = `
-<h1 class='map-title'>LOCATIONS:</h1>
-
-<div class='map-div'>
-  <div class='map-countries'>
-    <button class='map-btn-country' data-country='mx'>MEXICO</button>
-    <button class='map-btn-country' data-country='ca'>CANADA</button>
-  </div>
-
-  <div class='map-cities map-city-mx'>
-    <button class='map-btn-mx map-btn-city' data-city='0'>CDMX</button>
-    <button class='map-btn-mx map-btn-city' data-city='1'>Favorite places</button>
-  </div> 
-
-  <div class='map-cities map-city-ca'>
-    <button class='map-btn-ca map-btn-city' data-city='2'>Vancouver</button>
-    <button class='map-btn-ca map-btn-city' data-city='3'>Favorite places</button>
-  </div>
-
-  <div id='map-info'></div>
-</div>
-`;
-
-const countriesCont = document.querySelector(".map-countries");
-const cities = document.querySelectorAll(".map-cities");
-
-cities.forEach((c) => c.classList.add("hidden"));
-
-countriesCont.addEventListener("click", function (e) {
-  if (!e.target.classList.contains("map-btn-country")) return;
-
-  cities.forEach((c) => c.classList.add("hidden"));
-  document
-    .querySelectorAll(".map-btn-country")
-    .forEach((c) => c.classList.remove("map-active"));
-
-  const target = e.target;
-  const country = target.dataset.country;
-
-  document.querySelector(`.map-city-${country}`).classList.remove("hidden");
-  target.classList.add("map-active");
-});
-
 const citysInfo = {
   0: [
     `Mexico City is by far my favorite city because here my whole childhood happen, my family is here and 90% of my friends, 
@@ -228,8 +184,7 @@ const citysInfo = {
   loved the parks, the city but since I come from a huge city, Vancouver was kinda empty for me lol.`,
   ],
   3: [
-    `
-  1. Whistler 😍: Small town but with an incredible views from the top of the mountians, 
+    `1. Whistler 😍: Small town but with an incredible views from the top of the mountians, 
   for skiing and mountain bike is just perfect (risky, but perfect) with delicious restaurants around (only went to 3 tho). <br> <br>
   2. North Vancouver also has a beautiful view to the city 
   and mostly in summer there are a lot of festivals and events in that area which makes it perfect to socialize. <br> <br>
@@ -238,62 +193,129 @@ const citysInfo = {
   ],
 };
 
-const callBCities = function (e) {
-  const target = e.target;
+class Map {
+  #map;
+  #countriesCont;
+  #cities;
+  mxCity;
+  caCity;
 
-  document
-    .querySelectorAll(".map-btn-city")
-    .forEach((c) => c.classList.remove("map-active"));
-  target.classList.add("map-active");
+  constructor(citiesInfo) {
+    this._displayMapInfo();
+    this.#countriesCont.addEventListener("click", this._countryBtns.bind(this));
+    this.citiesInfo = citiesInfo;
+    this.mxCity.addEventListener("click", this.callBCities.bind(this));
+    this.caCity.addEventListener("click", this.callBCities.bind(this));
+    this._getLocation();
+  }
 
-  const mapDiv = document.getElementById("map-info");
-  mapDiv.innerHTML = "";
+  _displayMapInfo() {
+    locationCont.innerHTML = `
+    <h1 class='map-title'>LOCATIONS:</h1>
+    
+    <div class='map-div'>
+      <div class='map-countries'>
+        <button class='map-btn-country' data-country='mx'>MEXICO</button>
+        <button class='map-btn-country' data-country='ca'>CANADA</button>
+      </div>
+    
+      <div class='map-cities map-city-mx hidden'>
+        <button class='map-btn-mx map-btn-city' data-city='0'>CDMX</button>
+        <button class='map-btn-mx map-btn-city' data-city='1'>Favorite places</button>
+      </div> 
+    
+      <div class='map-cities map-city-ca hidden'>
+        <button class='map-btn-ca map-btn-city' data-city='2'>Vancouver</button>
+        <button class='map-btn-ca map-btn-city' data-city='3'>Favorite places</button>
+      </div>
+    
+      <div id='map-info'></div>
+    </div>
+    `;
 
-  const dataCity = target.dataset.city;
+    this.#countriesCont = document.querySelector(".map-countries");
+    this.#cities = document.querySelectorAll(".map-cities");
 
-  const infoEl = document.createElement("div");
-  infoEl.innerHTML = `<p>${citysInfo[dataCity][0]}</p>`;
-  infoEl.style.fontSize = "2rem";
-  infoEl.style.padding = "2rem";
-  infoEl.style.height = "34rem";
-  infoEl.style.overflowY = "auto";
-  infoEl.style.fontWeight = "500";
-  mapDiv.append(infoEl);
-};
+    this.mxCity = document.querySelector(".map-city-mx");
+    this.caCity = document.querySelector(".map-city-ca");
+  }
 
-const mxCity = document.querySelector(".map-city-mx");
-const caCity = document.querySelector(".map-city-ca");
+  _countryBtns(e) {
+    if (!e.target.classList.contains("map-btn-country")) return;
 
-mxCity.addEventListener("click", callBCities);
-caCity.addEventListener("click", callBCities);
+    this.#cities.forEach((c) => c.classList.add("hidden"));
 
-////// MAP
+    document
+      .querySelectorAll(".map-btn-country")
+      .forEach((c) => c.classList.remove("map-active"));
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      const { latitude } = position.coords;
-      const { longitude } = position.coords;
+    const target = e.target;
+    const country = target.dataset.country;
 
-      const coords = [latitude, longitude];
+    document.querySelector(`.map-city-${country}`).classList.remove("hidden");
+    target.classList.add("map-active");
+  }
 
-      const map = L.map("map").setView(coords, 13);
+  // Display city info
+  callBCities(e) {
+    if (!e.target.classList.contains("map-btn-city")) return;
 
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
+    const target = e.target;
 
-      L.marker(coords)
-        .addTo(map)
-        .bindPopup("A pretty CSS popup.<br> Easily customizable.")
-        .openPopup();
-    },
-    function () {
-      alert("Can't get location");
-    }
-  );
+    document
+      .querySelectorAll(".map-btn-city")
+      .forEach((c) => c.classList.remove("map-active"));
+    target.classList.add("map-active");
+
+    const mapDiv = document.getElementById("map-info");
+    mapDiv.innerHTML = "";
+
+    const dataCity = target.dataset.city;
+
+    const cityInfos = `<p>${this.citiesInfo[dataCity][0]}</p>`;
+    mapDiv.innerHTML = cityInfos;
+
+    // addMap([19.3753973, -99.1366977]);
+  }
+
+  ////// MAP
+
+  _getLocation() {
+    navigator.geolocation.getCurrentPosition(
+      this._loadMap.bind(this),
+      function () {
+        alert("Can't load map");
+      }
+    );
+  }
+
+  _loadMap(position) {
+    const { latitude } = position.coords;
+    const { longitude } = position.coords;
+
+    const coords = [latitude, longitude];
+
+    this.#map = L.map("map").setView(coords, 6);
+
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(this.#map);
+
+    // addMap(coords);
+  }
+
+  addMap(c) {
+    // [19.3753973, -99.1366977]
+
+    L.marker(c)
+      .addTo(map)
+      .bindPopup("A pretty CSS popup.<br> Easily customizable.")
+      .openPopup();
+  }
 }
+
+const newMap = new Map(citysInfo);
 
 // //// SECTION 2 REPOSITORIES
 
@@ -381,44 +403,3 @@ document.getElementById("section-2").prepend(message);
 
 const messageBtn = document.querySelector(".btn-abs");
 messageBtn.addEventListener("click", () => message.remove());
-
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-
-// Objects practice
-
-/*
-
-const myObject = {
-  name: "Ian",
-  currentJob: "Customer Service",
-};
-
-const expectations = {
-  mainGoal: "Earn more money",
-  howToAchive: "Change of carrer",
-  ultimateGoal: "Become an athlete",
-};
-expectations.car = "Porsche 911";
-
-const goalsFusion = Object.assign({}, myObject, expectations);
-
-goalsFusion.mainGoal = "Become an athlete";
-goalsFusion.ultimateGoal = "Earn a lot of money while enjoying what I do";
-
-myObject.currentJob = "Developer";
-console.log(myObject, "myObj");
-console.log(goalsFusion, "fusion");
-
-*/
-
-// Advance DOM in practice
-
-// Gets the entire HTML (head and body)
-// console.log(document.documentElement);
-
-// // Gets all elements with the same tag name (HTML collection)
-// console.log(document.getElementsByTagName("a"));
-
-// // Gets all elements with the same class name (HTML collection)
-// console.log(document.getElementsByClassName("nav-links"));

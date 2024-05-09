@@ -323,6 +323,14 @@ h2 {
   font-weight: 600;
 }
 
+#map-info {
+  font-size: 2rem;
+  padding: 2rem;
+  height: 34rem;
+  overflow-y: auto;
+  font-weight: 500;
+}
+
 .map-active {
   background-color: #49505798;
 }
