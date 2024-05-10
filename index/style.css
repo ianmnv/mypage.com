@@ -331,6 +331,10 @@ h2 {
   font-weight: 500;
 }
 
+.map-popup {
+  font-size: 1.5rem;
+}
+
 .map-active {
   background-color: #49505798;
 }
