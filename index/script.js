@@ -212,6 +212,8 @@ class Map {
   #cities;
   mxCity;
   caCity;
+  markers = [];
+  currentMarker;
 
   constructor(citiesInfo) {
     this._displayMapInfo();
@@ -289,19 +291,21 @@ class Map {
     const cityInfos = `<p>${this.citiesInfo[dataCity][0]}</p>`;
     mapDiv.innerHTML = cityInfos;
 
-    // Display marker on map
+    //// Display marker on map
 
-    // cdmx
+    /// cdmx
     // [19.3753973, -99.1366977]
 
-    // Quintana Roo, Oaxaca, Puebla, Puerto Vallarta
+    /// Quintana Roo, Oaxaca, Puebla, Puerto Vallarta
     // [21.1213783,-86.9388046], [15.8748973,-97.0976379], [19.0400289,-98.2745829], [20.6408555,-105.2655067]
 
-    // Vancouver
+    /// Vancouver
     // [49.2577062,-123.2063038]
 
-    // Whistler, North Vancouver, Victoria
+    /// Whistler, North Vancouver, Victoria
     // [50.1041188,-123.0839148], [49.3151148,-123.0909845], [48.4262073,-123.379822]
+
+    this.removeMarker();
 
     const lats = [];
     const lngs = [];
@@ -357,7 +361,7 @@ class Map {
   }
 
   addMarker(coords, msg) {
-    L.marker(coords)
+    this.currentMarker = L.marker(coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -368,6 +372,14 @@ class Map {
       )
       .setPopupContent(msg)
       .openPopup();
+
+    this.markers.push(this.currentMarker);
+  }
+
+  removeMarker() {
+    this.markers.forEach((marker) => {
+      if (marker) this.#map.removeLayer(marker);
+    });
   }
 }
 
