@@ -104,13 +104,17 @@ observer.observe(header);
 
 // Hovering my img
 const imgIan = document.querySelector(".imgIan");
+let me;
 
 const imgCallB = function () {
-  alert("Yep, that's me 😏");
-  imgIan.removeEventListener("mouseenter", imgCallB);
+  me = document.createElement("p");
+  me.textContent = "Yep, that's me 😏";
+  me.classList.add("img-text");
+  imgIan.before(me);
 };
 
-// imgIan.addEventListener("mouseenter", imgCallB);
+imgIan.addEventListener("mouseover", imgCallB);
+imgIan.addEventListener("mouseout", () => me.remove());
 
 ////// SLIDER
 const btnRight = document.getElementById("btn-right");
@@ -118,7 +122,7 @@ const btnLeft = document.getElementById("btn-left");
 
 const sliders = document.querySelectorAll(".slide");
 
-let curSlide = 1;
+let curSlide = 0;
 const maxSlides = sliders.length - 1;
 
 const goToSlide = function (slide) {
@@ -127,7 +131,7 @@ const goToSlide = function (slide) {
   });
 };
 
-goToSlide(1);
+goToSlide(0);
 
 const nextSlide = function () {
   if (curSlide === maxSlides) {

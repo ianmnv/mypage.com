@@ -231,6 +231,17 @@ h2 {
 
 .imgIan {
   max-height: 46rem;
+  position: relative;
+}
+
+.img-text {
+  position: absolute;
+  bottom: -3rem;
+  left: 11.5%;
+
+  padding: 0.2rem 2rem;
+  font-size: 2rem;
+  background-color: #fff;
 }
 
 .storyDiv {
