@@ -11,7 +11,7 @@ html {
 
 body {
   margin: 0 17rem 10rem;
-  background: url(img/clouds-in-black.jpg);
+  background: url(../img/clouds-in-black.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
@@ -35,7 +35,7 @@ header {
   height: 40vh;
   padding: 2rem;
 
-  background: url(img/waves-in-black.jpg);
+  background: url(../img/waves-in-black.jpg);
   background-size: cover;
   display: grid;
   grid-template-columns: 1fr 15%;
@@ -81,7 +81,7 @@ header {
   flex-direction: row;
   gap: 10rem;
 
-  background: url(img/waves-in-black.jpg);
+  background: url(../img/waves-in-black.jpg);
   background-size: cover;
 }
 
