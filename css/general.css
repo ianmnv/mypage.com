@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  margin: 0 17rem 10rem;
+  margin: 0 17rem;
   background: url(../img/clouds-in-black.jpg);
   background-size: cover;
   background-attachment: fixed;

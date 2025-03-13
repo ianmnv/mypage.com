@@ -2,7 +2,7 @@
 
 #section-1 {
   position: relative;
-  min-height: 97rem;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -12,12 +12,13 @@
 
 .slide {
   position: absolute;
-  top: 27rem;
+  top: 20rem;
 
   display: flex;
   justify-content: center;
 
-  min-width: 130rem;
+  min-width: 100%;
+  padding: 0 10rem;
 
   transition: transform 0.8s;
 }
@@ -56,6 +57,12 @@
   width: 2.4rem;
 }
 
+.sec1-pic-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 h2 {
   font-size: 3rem;
 }
@@ -79,10 +86,6 @@ h2 {
   background-color: #fff;
 }
 
-.storyDiv {
-  width: 60%;
-}
-
 .sec1-h2 {
   font-size: 6rem;
 }
@@ -92,7 +95,7 @@ h2 {
 }
 
 .sec1-container {
-  padding: 0 2rem;
+  padding-left: 2rem;
 }
 
 .sec1-h3 {
@@ -123,7 +126,7 @@ h2 {
 }
 
 .map {
-  margin-left: 13rem;
+  /* margin-left: 13rem; */
   max-width: 130rem;
 }
 
